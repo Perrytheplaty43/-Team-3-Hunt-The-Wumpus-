@@ -17,5 +17,9 @@ namespace Team_3_Hunt_The_Wumpus
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //change
+        }
     }
 }
