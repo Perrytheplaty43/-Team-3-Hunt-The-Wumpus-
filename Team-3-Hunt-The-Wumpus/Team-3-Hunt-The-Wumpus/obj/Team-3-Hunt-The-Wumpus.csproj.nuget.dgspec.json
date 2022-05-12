@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\1080989\\source\\repos\\Team3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus.csproj": {}
+    "C:\\Users\\2014800\\Documents\\GitHub\\-Team-3-Hunt-The-Wumpus-\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus.csproj": {}
   },
   "projects": {
-    "C:\\Users\\1080989\\source\\repos\\Team3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus.csproj": {
+    "C:\\Users\\2014800\\Documents\\GitHub\\-Team-3-Hunt-The-Wumpus-\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\1080989\\source\\repos\\Team3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus.csproj",
+        "projectUniqueName": "C:\\Users\\2014800\\Documents\\GitHub\\-Team-3-Hunt-The-Wumpus-\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus.csproj",
         "projectName": "Team-3-Hunt-The-Wumpus",
-        "projectPath": "C:\\Users\\1080989\\source\\repos\\Team3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus.csproj",
-        "packagesPath": "C:\\Users\\1080989\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\1080989\\source\\repos\\Team3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\obj\\",
+        "projectPath": "C:\\Users\\2014800\\Documents\\GitHub\\-Team-3-Hunt-The-Wumpus-\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus.csproj",
+        "packagesPath": "C:\\Users\\2014800\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\2014800\\Documents\\GitHub\\-Team-3-Hunt-The-Wumpus-\\Team-3-Hunt-The-Wumpus\\Team-3-Hunt-The-Wumpus\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\1080989\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\2014800\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
