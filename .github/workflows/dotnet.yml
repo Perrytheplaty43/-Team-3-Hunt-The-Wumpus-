@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 5.0.x
+    - name: Entering working directory
+      run: cd Team-3-Hunt-The-Wumpus
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
