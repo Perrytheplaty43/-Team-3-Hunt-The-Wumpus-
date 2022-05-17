@@ -70,9 +70,11 @@ namespace Team_3_Hunt_The_Wumpus
             {23,24,30,5,28,22 },
             {24,25,1,6,5,29 } };
         
-        public void GetAdjacentRooms()
+        public void GetAdjacentRooms(int room)
         {
-                
+            GameLocation gameLocation = new GameLocation();
+            room = gameLocation.PlayerLocation;
+            
         }
 
         //room class
