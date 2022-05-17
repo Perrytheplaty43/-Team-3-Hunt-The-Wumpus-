@@ -52,7 +52,7 @@ namespace Team_3_Hunt_The_Wumpus
         public string GiveWarning()
         {
             // different outcome based on which room player is near
-
+            
             return "";
         }
 
