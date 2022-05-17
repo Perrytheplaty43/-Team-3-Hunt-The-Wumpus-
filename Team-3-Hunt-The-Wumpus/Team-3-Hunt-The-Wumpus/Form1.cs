@@ -38,6 +38,7 @@ namespace Team_3_Hunt_The_Wumpus
             WindowState = FormWindowState.Maximized;
             BackgroundImage = Properties.Resources.background;
             
+            textBoxCommand.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
         }
 
         private void Form1_Load(object sender, EventArgs e)

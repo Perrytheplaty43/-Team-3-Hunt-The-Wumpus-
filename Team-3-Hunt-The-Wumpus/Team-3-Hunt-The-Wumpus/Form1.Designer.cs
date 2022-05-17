@@ -30,6 +30,7 @@ namespace Team_3_Hunt_The_Wumpus
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -40,27 +41,43 @@ namespace Team_3_Hunt_The_Wumpus
             this.label1.ForeColor = System.Drawing.Color.Lime;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1340, 134);
+            this.label1.Size = new System.Drawing.Size(1304, 134);
             this.label1.TabIndex = 0;
             this.label1.Text = "Hunt the Wumpus";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // textBoxCommand
+            // 
+            this.textBoxCommand.BackColor = System.Drawing.Color.Black;
+            this.textBoxCommand.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxCommand.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBoxCommand.ForeColor = System.Drawing.Color.Lime;
+            this.textBoxCommand.Location = new System.Drawing.Point(0, 613);
+            this.textBoxCommand.Name = "textBoxCommand";
+            this.textBoxCommand.PlaceholderText = "enter command...";
+            this.textBoxCommand.Size = new System.Drawing.Size(1304, 16);
+            this.textBoxCommand.TabIndex = 1;
+            this.textBoxCommand.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1340, 643);
+            this.ClientSize = new System.Drawing.Size(1304, 629);
+            this.Controls.Add(this.textBoxCommand);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Hunt the Wumpus";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxCommand;
     }
 }
 
