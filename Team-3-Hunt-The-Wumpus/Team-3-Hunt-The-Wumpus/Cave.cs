@@ -72,8 +72,12 @@ namespace Team_3_Hunt_The_Wumpus
         
         public void GetAdjacentRooms(int room)
         {
-            GameLocation gameLocation = new GameLocation();
-            room = gameLocation.PlayerLocation;
+            //following 2 lines were temporaroly commented because they resulted in an error:
+            //GameLocation(); need the following arguments: int PlayerLocation, int WumpusLocation, int PitsLocation, int BatsLocation
+            //feel free to uncomment to continue working
+            
+            //GameLocation gameLocation = new GameLocation();
+            //room = gameLocation.PlayerLocation;
             
         }
 
