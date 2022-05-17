@@ -35,10 +35,10 @@ namespace Team_3_Hunt_The_Wumpus
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Dash Dot LCD-7", 71.99999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(768, 100);
+            this.label1.Size = new System.Drawing.Size(810, 108);
             this.label1.TabIndex = 0;
             this.label1.Text = "Hunt the Wumpus";
             // 
