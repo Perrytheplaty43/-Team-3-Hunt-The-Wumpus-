@@ -35,10 +35,26 @@ namespace Team_3_Hunt_The_Wumpus
             Marshal.FreeCoTaskMem(ptrData);
 
             label1.Font = new Font(pfc.Families[0], 72, FontStyle.Regular);
+            WindowState = FormWindowState.Maximized;
+            BackgroundImage = Properties.Resources.background;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            TypeWriterEffect("Hunt the Wumpus", label1, 50);
+        }
+
+        public Task TypeWriterEffect(string txt, Label lbl, int delay) {
+            return Task.Run(() =>
+            {
+                for (int i = 0; i <= txt.Length; i++) {
+                    lbl.Invoke((MethodInvoker)delegate {
+                        lbl.Text = txt.Substring(0, i);
+                    });
+                    System.Threading.Thread.Sleep(delay); ;
+                }
+            });
         }
     }
 }
