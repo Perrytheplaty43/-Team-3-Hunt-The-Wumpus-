@@ -8,7 +8,7 @@ namespace Team_3_Hunt_The_Wumpus
 {
     class Trivia
     {
-        // inst variables
+       // inst variables
        // public static List<string> TriviaList;
 
         public int QuestionsAsked { get; set; }
@@ -23,7 +23,9 @@ namespace Team_3_Hunt_The_Wumpus
             QuestionsWrong = qw; 
         }
 
-        public void 
+        //commented un finished code to surpress build errors
+        //feel free to uncomment to continue working
+        //public void 
 
     }
 
