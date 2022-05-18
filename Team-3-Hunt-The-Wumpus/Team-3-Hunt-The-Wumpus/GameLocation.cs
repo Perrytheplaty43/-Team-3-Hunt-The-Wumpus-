@@ -75,7 +75,10 @@ namespace Team_3_Hunt_The_Wumpus
         public string GiveWarning()
         {
             // different outcome based on which room player is near
-            if ()
+            
+            //commented un finished code to surpress build errors
+            //feel free to uncomment to continue working
+            /*if ()
             {
                 // wumpus
                 return "I smell a Wumpus!";
@@ -91,7 +94,7 @@ namespace Team_3_Hunt_The_Wumpus
                 return "I feel a draft!";
             }
 
-            return "";
+            return "";*/
         }
 
         // shoots an arrow to a specific room
