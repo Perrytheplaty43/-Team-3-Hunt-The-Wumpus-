@@ -93,8 +93,8 @@ namespace Team_3_Hunt_The_Wumpus
                 // bats
                 return "I feel a draft!";
             }
-
-            return "";*/
+            */
+            return "";
         }
 
         // shoots an arrow to a specific room
