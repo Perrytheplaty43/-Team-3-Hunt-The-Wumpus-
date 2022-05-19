@@ -16,18 +16,14 @@ namespace Team_3_Hunt_The_Wumpus
         public int Pit2Location { get; set; }
         public int Bat1Location { get; set; }
         public int Bat2Location { get; set; }
+        public bool WinOrLose { get; set; }
 
         Random rndRoom = new Random();
 
         // constructor
-        public GameLocation(int pL, int wL, int piL1, int pil2, int bL1, int bl2)
+        public GameLocation()
         {
-            pL = PlayerLocation;
-            wL = WumpusLocation;
-            piL1 = Pit1Location;
-            pil2 = Pit2Location;
-            bL1 = Bat1Location;
-            bl2 = Bat2Location;
+            
         }
 
         // functions
@@ -40,7 +36,7 @@ namespace Team_3_Hunt_The_Wumpus
             PlayerLocation = room;
         }
 
-        // randomizes wumpus location to 2-4 rooms away from its current location
+        // randomizes wumpus location to 2-4 rooms away from its current location when it runs away
         public void RandomizeWumpusLocation()
         {
             int room;
@@ -48,6 +44,8 @@ namespace Team_3_Hunt_The_Wumpus
             room = rndRoom.Next(4);
             WumpusLocation = WumpusLocation + room;
         }
+
+        // resets wumpus loc
 
         // randomizes the locations of both pit rooms 
         public void RandomizePitsLocation()
@@ -75,25 +73,22 @@ namespace Team_3_Hunt_The_Wumpus
         public string GiveWarning()
         {
             // different outcome based on which room player is near
-            
-            //commented un finished code to surpress build errors
-            //feel free to uncomment to continue working
-            /*if ()
+
+            if (PlayerLocation == WumpusLocation)
             {
                 // wumpus
                 return "I smell a Wumpus!";
             }
-            else if ()
+            else if (PlayerLocation == Bat1Location || PlayerLocation == Bat2Location)
             {
                 // pits
                 return "Bats nearby!";
             }
-            else if ()
+            else if (PlayerLocation == Pit1Location || PlayerLocation == Pit2Location)
             {
                 // bats
                 return "I feel a draft!";
             }
-            */
             return "";
         }
 
@@ -103,7 +98,10 @@ namespace Team_3_Hunt_The_Wumpus
             // different outcome based on whether the arrow hits wumpus
             if (WumpusLocation == arrowLocation)
             {
-                // end game
+                // win game
+                WinOrLose = true;
+
+                EndGame(WinOrLose);
             }
             else
             {
@@ -112,10 +110,24 @@ namespace Team_3_Hunt_The_Wumpus
             }
         }
 
-        // returns a random piece of trivia
+        // returns a random piece of trivia depending on questions asked
         public string GetHint()
         {
             return ""; 
+        }
+
+        // ends game if player wins or loses (true = win, false = lose)
+        public void EndGame(bool wL)
+        {
+            // based on whether the player has won or lost, sends something different to ui; also resets game -> randomizes all locations
+            if (wL == true)
+            {
+                // win
+            }
+            else if (wL == false)
+            {
+                // lose
+            }
         }
     }
 }
