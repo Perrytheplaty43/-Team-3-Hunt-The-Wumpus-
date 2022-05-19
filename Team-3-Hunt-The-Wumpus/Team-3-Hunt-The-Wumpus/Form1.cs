@@ -14,6 +14,8 @@ namespace Team_3_Hunt_The_Wumpus
 {
     public partial class Form1 : Form
     {
+        public GameLocation MyGameLocation = new GameLocation();
+        public Cave MyCave;
         public Form1() {
             [DllImport("gdi32.dll")]
             static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
@@ -44,6 +46,8 @@ namespace Team_3_Hunt_The_Wumpus
         private void Form1_Load(object sender, EventArgs e)
         {
             TypeWriterEffect("Hunt the Wumpus", label1, 50);
+            MyGameLocation.RandomizePlayerLocation();
+            MyCave = new Cave(MyGameLocation);
         }
 
         public Task TypeWriterEffect(string txt, Label lbl, int delay) {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Team_3_Hunt_The_Wumpus
 {
-    class Cave
+    public class Cave
     {
         public int[,] connectedRooms = new int[30,6]{{0, 0, 2, 0, 6, 30 },
             {0, 0, 0,8,0,1 },
@@ -69,7 +69,15 @@ namespace Team_3_Hunt_The_Wumpus
             {22,29,5,4,3,27 },
             {23,24,30,5,28,22 },
             {24,25,1,6,5,29 } };
-        
+
+        GameLocation location;
+
+        public Cave(GameLocation my)
+        {
+            location = my;
+            Console.WriteLine(location.PlayerLocation);
+        }
+
         public string GetAdjacentRooms(int room)
         {
             string adjacent = "";
