@@ -69,6 +69,7 @@ namespace Team_3_Hunt_The_Wumpus
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1304, 445);
             this.panel1.TabIndex = 2;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Form1
             // 
