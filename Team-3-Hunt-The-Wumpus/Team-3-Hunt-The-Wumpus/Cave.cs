@@ -70,15 +70,25 @@ namespace Team_3_Hunt_The_Wumpus
             {23,24,30,5,28,22 },
             {24,25,1,6,5,29 } };
         
-        public void GetAdjacentRooms(int room)
+        public string GetAdjacentRooms(int room)
         {
-            //following 2 lines were temporaroly commented because they resulted in an error:
-            //GameLocation(); need the following arguments: int PlayerLocation, int WumpusLocation, int PitsLocation, int BatsLocation
-            //feel free to uncomment to continue working
-            
-            //GameLocation gameLocation = new GameLocation();
-            //room = gameLocation.PlayerLocation;
-            
+            string adjacent = "";
+            for (int i = 0; i < 7; i++)
+            {               
+                adjacent += adjacentRooms[room, i].ToString() + ",";
+            }
+            return adjacent;
+        }
+
+        public string GetConnectedRooms(int room)
+        {
+            string connected = "";
+            for(int i = 0; i < 7; i++)
+            {
+                connected += connectedRooms[room, i].ToString() + ",";
+            }            
+            connected.Replace("0,", "");
+            return connected;
         }
 
         //room class
