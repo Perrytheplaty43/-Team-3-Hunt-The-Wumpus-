@@ -57,5 +57,10 @@ namespace Team_3_Hunt_The_Wumpus
                 }
             });
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

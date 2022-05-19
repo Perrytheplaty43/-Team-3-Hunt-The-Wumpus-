@@ -86,8 +86,7 @@ namespace Team_3_Hunt_The_Wumpus
             for(int i = 0; i < 7; i++)
             {
                 connected += connectedRooms[room, i].ToString() + ",";
-            }
-            //get rid of 0's
+            }            
             connected.Replace("0,", "");
             return connected;
         }
