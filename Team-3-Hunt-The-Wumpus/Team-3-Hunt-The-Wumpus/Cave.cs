@@ -70,16 +70,6 @@ namespace Team_3_Hunt_The_Wumpus
             {23,24,30,5,28,22 },
             {24,25,1,6,5,29 } };
 
-        GameLocation location;
-
-        public Cave(GameLocation my)
-        {
-            location = my;
-            
-            //only for testing
-            Console.WriteLine(location.PlayerLocation);
-        }
-
         public string GetAdjacentRooms(int room)
         {
             string adjacent = "";

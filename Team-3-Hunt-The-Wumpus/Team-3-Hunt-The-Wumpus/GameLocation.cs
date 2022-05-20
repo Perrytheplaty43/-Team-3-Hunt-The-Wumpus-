@@ -21,10 +21,10 @@ namespace Team_3_Hunt_The_Wumpus
         Cave cave = new Cave();
         Random rndRoom = new Random();
 
-        // constructor
-        public GameLocation()
-        {
-            
+        //constructor
+
+        public GameLocation() {
+            RandomizeAllLocations();
         }
 
         // functions

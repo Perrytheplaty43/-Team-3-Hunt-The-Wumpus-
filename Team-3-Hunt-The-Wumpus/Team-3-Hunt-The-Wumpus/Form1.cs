@@ -14,8 +14,8 @@ namespace Team_3_Hunt_The_Wumpus
 {
     public partial class Form1 : Form
     {
+        public Cave MyCave = new Cave();
         public GameLocation MyGameLocation = new GameLocation();
-        public Cave MyCave;
         public Form1() {
             [DllImport("gdi32.dll")]
             static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
@@ -46,8 +46,6 @@ namespace Team_3_Hunt_The_Wumpus
         private void Form1_Load(object sender, EventArgs e)
         {
             TypeWriterEffect("Hunt the Wumpus", label1, 50);
-            MyGameLocation.RandomizePlayerLocation();
-            MyCave = new Cave(MyGameLocation);
         }
 
         public Task TypeWriterEffect(string txt, Label lbl, int delay) {
@@ -62,9 +60,82 @@ namespace Team_3_Hunt_The_Wumpus
             });
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+        private void panel1_Paint(object sender, PaintEventArgs e) {
+            var graphics = e.Graphics;
 
+            //Get the middle of the panel
+            var x_0 = panel1.Width / 2;
+            var y_0 = panel1.Height / 2;
+
+            var shape = new PointF[6];
+            var shape1 = new PointF[6];
+            var shape2 = new PointF[6];
+            var shape3 = new PointF[6];
+            var shape4 = new PointF[6];
+            var shape5 = new PointF[6];
+            var shape6 = new PointF[6];
+
+            var r = 70; //70 px radius 
+
+            //center
+            for (int a = 0; a < 6; a++) {
+                shape[a] = new PointF(
+                    x_0 + r * (float)Math.Cos(a * 60 * Math.PI / 180f) - 70,
+                    y_0 + r * (float)Math.Sin(a * 60 * Math.PI / 180f));
+            }
+
+            //top left
+            for (int a = 0; a < 6; a++) {
+                shape1[a] = new PointF(
+                    x_0 + r * (float)Math.Cos(a * 60 * Math.PI / 180f) - 180,
+                    y_0 + r * (float)Math.Sin(a * 60 * Math.PI / 180f) - 60);
+            }
+
+            //top right
+            for (int a = 0; a < 6; a++) {
+                shape2[a] = new PointF(
+                    x_0 + r * (float)Math.Cos(a * 60 * Math.PI / 180f) + 35,
+                    y_0 + r * (float)Math.Sin(a * 60 * Math.PI / 180f) - 60);
+            }
+
+            //top
+            for (int a = 0; a < 6; a++) {
+                shape3[a] = new PointF(
+                    x_0 + r * (float)Math.Cos(a * 60 * Math.PI / 180f) - 70,
+                    y_0 + r * (float)Math.Sin(a * 60 * Math.PI / 180f) - 120);
+            }
+
+            //bottom
+            for (int a = 0; a < 6; a++) {
+                shape4[a] = new PointF(
+                    x_0 + r * (float)Math.Cos(a * 60 * Math.PI / 180f) - 70,
+                    y_0 + r * (float)Math.Sin(a * 60 * Math.PI / 180f) + 120);
+            }
+
+            //bottom right
+            for (int a = 0; a < 6; a++) {
+                shape5[a] = new PointF(
+                    x_0 + r * (float)Math.Cos(a * 60 * Math.PI / 180f) + 35,
+                    y_0 + r * (float)Math.Sin(a * 60 * Math.PI / 180f) + 60);
+            }
+
+            //bottom left
+            for (int a = 0; a < 6; a++) {
+                shape6[a] = new PointF(
+                    x_0 + r * (float)Math.Cos(a * 60 * Math.PI / 180f) - 180,
+                    y_0 + r * (float)Math.Sin(a * 60 * Math.PI / 180f) + 60);
+            }
+
+            Pen limePen = new Pen(Color.Lime, 10);
+            limePen.Alignment = System.Drawing.Drawing2D.PenAlignment.Center;
+
+            graphics.DrawPolygon(limePen, shape);
+            graphics.DrawPolygon(limePen, shape1);
+            graphics.DrawPolygon(limePen, shape2);
+            graphics.DrawPolygon(limePen, shape3);
+            graphics.DrawPolygon(limePen, shape4);
+            graphics.DrawPolygon(limePen, shape5);
+            graphics.DrawPolygon(limePen, shape6);
         }
     }
 }
