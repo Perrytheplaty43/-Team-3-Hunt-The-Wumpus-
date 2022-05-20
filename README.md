@@ -18,4 +18,4 @@
 
 **HighScore**: Xavier (OpenWiza)
 
-**Player**: Open 
+**Player**: Connor (connorno) 
