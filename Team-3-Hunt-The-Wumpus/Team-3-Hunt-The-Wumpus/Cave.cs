@@ -75,6 +75,8 @@ namespace Team_3_Hunt_The_Wumpus
         public Cave(GameLocation my)
         {
             location = my;
+            
+            //only for testing
             Console.WriteLine(location.PlayerLocation);
         }
 
