@@ -34,7 +34,7 @@ namespace Team_3_Hunt_The_Wumpus
 
         public void PurchaseSecret()
         {
-            //user answers 2/3 trivial correct
+            //user answers 2/3 trivia correct
         }
 
         public void SaveFromPit()
