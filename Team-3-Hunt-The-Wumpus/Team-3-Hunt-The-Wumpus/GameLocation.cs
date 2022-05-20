@@ -18,6 +18,7 @@ namespace Team_3_Hunt_The_Wumpus
         public int Bat2Location { get; set; }
         public bool WinOrLose { get; set; }
 
+        Cave cave = new Cave();
         Random rndRoom = new Random();
 
         // constructor
@@ -37,15 +38,25 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // randomizes wumpus location to 2-4 rooms away from its current location when it runs away
+        public void RunAwayWumpusLocation()
+        {
+            string possibleRooms;
+            int room;
+
+            // finds all adjacent rooms that the wumpus could go to
+            possibleRooms = cave.GetAdjacentRooms(WumpusLocation);
+            room = rndRoom.Next(4);
+            WumpusLocation = room;
+        }
+
+        // resets wumpus location when the game is restarted
         public void RandomizeWumpusLocation()
         {
             int room;
 
-            room = rndRoom.Next(4);
-            WumpusLocation = WumpusLocation + room;
+            room = rndRoom.Next(30);
+            WumpusLocation = room;
         }
-
-        // resets wumpus loc
 
         // randomizes the locations of both pit rooms 
         public void RandomizePitsLocation()
@@ -73,7 +84,6 @@ namespace Team_3_Hunt_The_Wumpus
         public string GiveWarning()
         {
             // different outcome based on which room player is near
-
             if (PlayerLocation == WumpusLocation)
             {
                 // wumpus
@@ -106,7 +116,7 @@ namespace Team_3_Hunt_The_Wumpus
             else
             {
                 // wumpus changes room
-                RandomizeWumpusLocation();
+                RunAwayWumpusLocation();
             }
         }
 
@@ -123,11 +133,22 @@ namespace Team_3_Hunt_The_Wumpus
             if (wL == true)
             {
                 // win
+                RandomizeAllLocations();
             }
             else if (wL == false)
             {
                 // lose
+                RandomizeAllLocations();
             }
+        }
+
+        // resets locations, regardless of whether or not a player has won
+        public void RandomizeAllLocations()
+        {
+            RandomizePlayerLocation();
+            RandomizeWumpusLocation();
+            RandomizeBatsLocation();
+            RandomizePitsLocation();
         }
     }
 }
