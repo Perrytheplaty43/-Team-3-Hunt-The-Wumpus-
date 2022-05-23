@@ -59,7 +59,12 @@ namespace Team_3_Hunt_The_Wumpus
                 }
             });
         }
-
+        bool canRoom1;
+        bool canRoom2;
+        bool canRoom3;
+        bool canRoom4;
+        bool canRoom5;
+        bool canRoom6;
         private void panel1_Paint(object sender, PaintEventArgs e) {
             var graphics = e.Graphics;
 
