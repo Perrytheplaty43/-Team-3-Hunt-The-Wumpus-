@@ -23,24 +23,7 @@ namespace Team_3_Hunt_The_Wumpus
             QuestionsWrong = qw; 
         }
 
-        public void PurchaseArrows(int qa, int qr, int qw, int goldCoinAmount)
-        {
-            int purchase = goldCoinAmount - 1;
-         
-
-            //user answers 2/3 trivia correct
-            //costs 1 gold coin to answer trivia 
-        }
-
-        public void PurchaseSecret()
-        {
-            //user answers 2/3 trivia correct
-        }
-
-        public void SaveFromPit()
-        {
-
-        }
+      
     }
 
 }
