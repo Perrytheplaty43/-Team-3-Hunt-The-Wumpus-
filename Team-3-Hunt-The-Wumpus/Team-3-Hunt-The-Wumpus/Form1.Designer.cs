@@ -1,4 +1,7 @@
 ﻿
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace Team_3_Hunt_The_Wumpus
 {
     partial class Form1
@@ -30,23 +33,54 @@ namespace Team_3_Hunt_The_Wumpus
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxCommand = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Dash Dot LCD-7", 71.99999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.Lime;
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(768, 100);
+            this.label1.Size = new System.Drawing.Size(1287, 134);
             this.label1.TabIndex = 0;
             this.label1.Text = "Hunt the Wumpus";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // textBoxCommand
+            // 
+            this.textBoxCommand.BackColor = System.Drawing.Color.Black;
+            this.textBoxCommand.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxCommand.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBoxCommand.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxCommand.ForeColor = System.Drawing.Color.Lime;
+            this.textBoxCommand.Location = new System.Drawing.Point(0, 678);
+            this.textBoxCommand.Name = "textBoxCommand";
+            this.textBoxCommand.PlaceholderText = "enter command...";
+            this.textBoxCommand.Size = new System.Drawing.Size(1287, 50);
+            this.textBoxCommand.TabIndex = 1;
+            this.textBoxCommand.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Location = new System.Drawing.Point(452, 138);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(510, 500);
+            this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1340, 643);
+            this.ClientSize = new System.Drawing.Size(1287, 728);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.textBoxCommand);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Hunt the Wumpus";
@@ -59,6 +93,8 @@ namespace Team_3_Hunt_The_Wumpus
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxCommand;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

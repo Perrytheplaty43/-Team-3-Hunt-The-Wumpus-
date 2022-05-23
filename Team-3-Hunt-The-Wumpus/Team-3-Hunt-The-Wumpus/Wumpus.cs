@@ -9,6 +9,8 @@ namespace Team_3_Hunt_The_Wumpus
     class Wumpus
     {
         // instance variables
+        public int MyProperty { get; set; }
+        GameLocation gameLocation = new GameLocation();
 
         // constructer
         public Wumpus()
@@ -17,6 +19,10 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // functions
- 
+        // wakes wumpus
+        public void WakeWumpus()
+        {
+            gameLocation.RunAwayWumpusLocation();
+        }
     }
 }
