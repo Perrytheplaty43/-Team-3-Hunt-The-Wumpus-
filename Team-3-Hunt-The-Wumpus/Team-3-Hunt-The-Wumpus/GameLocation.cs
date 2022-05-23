@@ -41,7 +41,7 @@ namespace Team_3_Hunt_The_Wumpus
         // randomizes wumpus location to 2-4 rooms away from its current location when it runs away
         public void RunAwayWumpusLocation()
         {
-            List<int> possibleRooms;
+            int[] possibleRooms;
             int room;
 
             // finds all adjacent rooms that the wumpus could go to
@@ -115,7 +115,7 @@ namespace Team_3_Hunt_The_Wumpus
             }
             else
             {
-                // wumpus changes room
+                // wumpus runs away
                 RunAwayWumpusLocation();
             }
         }
