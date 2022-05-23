@@ -8,6 +8,7 @@ namespace Team_3_Hunt_The_Wumpus
 {
     public class Cave
     {
+        public int MyProperty { get; set; }
         public int[,] connectedRooms1 = new int[30,6]{{0, 0, 2, 0, 6, 30 },
             {0, 0, 0,8,0,1 },
             {0,0,0,9,0,0 },
@@ -50,7 +51,7 @@ namespace Team_3_Hunt_The_Wumpus
             {3,4,10,15,8,2 }, 
             {4,11,17,16,15,9 },
             {5,6,12,17,10,4 }, 
-            {6,7,13,18,27,11 },
+            {6,7,13,18,17,11 },
             {7,8,14,19,18,12 },
             {8,15,21,20,19,13 },
             {9,10,16,21,14,8 },
@@ -99,24 +100,24 @@ namespace Team_3_Hunt_The_Wumpus
             {0,0,28,0,0,0 },
             {22,29,0,0,0,27 },
             {23,0,30,0,28,0 },
-            {0,0,0,0,0,0 } };
+            {0,0,0,0,0,29 } };
 
-        public int[,] connectedRooms3 = new int[30, 6] {{25, 26, 2, 7, 6, 30 }, //finish
-            {26, 3, 9,8,7,1 },
-            {27,28,4,9,2,26 },
-            {28,5,11,10,9,3 },
-            {29,30,6,11,4,28 },
-            {30,1,7,12,11,5 },
-            {1,2,8,13,12,6 },
-            {2,9,15,14,13,7 },
-            {3,4,10,15,8,2 },
-            {4,11,17,16,15,9 },
-            {5,6,12,17,10,4 },
-            {6,7,13,18,27,11 },
-            {7,8,14,19,18,12 },
-            {8,15,21,20,19,13 },
-            {9,10,16,21,14,8 },
-            {10,17,23,22,21,15 },
+        public int[,] connectedRooms3 = new int[30, 6] {{0, 26, 0, 0, 0, 30 }, //finish
+            {0, 0, 9,0,0,0 },
+            {0,28,0,9,0,26 },
+            {0,5,0,10,0,0 },
+            {0,30,0,0,4,28 },
+            {0,0,0,0,11,0 },
+            {0,0,8,13,0,0 },
+            {0,9,0,14,0,7 },
+            {3,0,0,0,8,2 },
+            {4,0,0,0,15,0 },
+            {0,6,0,17,0,0 },
+            {0,0,0,0,17,0 },
+            {7,0,0,0,0,0 },
+            {8,0,21,20,0,0 },
+            {0,10,0,0,0,0 },
+            {0,0,0,22,0,0 },
             {11,12,18,23,16,10 },
             {12,13,19,24,23,17 },
             {13,14,20,25,24,18 },
@@ -194,25 +195,25 @@ namespace Team_3_Hunt_The_Wumpus
             {24,25,1,6,5,29 } };
 
 
-        public string GetAdjacentRooms(int room)
+        public int[] GetAdjacentRooms(int room)
         {
-            string adjacent = "";
+            int[] adjacent = new int[6];
             for (int i = 0; i < 7; i++)
             {               
-                adjacent += adjacentRooms[room, i].ToString() + ",";
+                adjacent[i] = adjacentRooms[room, i];
             }
             return adjacent;
         }
 
-        public string GetConnectedRooms(int room)
+        public List<int> GetConnectedRooms(int room)
         {
-            string connected = "";
+            List<int> connected = new List<int>();
+
             for(int i = 0; i < 7; i++)
             {
-                connected += connectedRooms1[room, i].ToString() + ",";
+                connected.Add(connectedRooms1[room, i]);
                 //fix for all rooms
             }            
-            connected.Replace("0,", "");
             return connected;
         }
 
