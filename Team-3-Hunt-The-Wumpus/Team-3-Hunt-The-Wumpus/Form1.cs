@@ -42,10 +42,46 @@ namespace Team_3_Hunt_The_Wumpus
             
             textBoxCommand.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
         }
-
+        int[] adjRooms;
+        List<int> connectedRoom;
         private void Form1_Load(object sender, EventArgs e)
         {
             TypeWriterEffect("Hunt the Wumpus", label1, 50);
+            adjRooms = MyCave.GetAdjacentRooms(MyGameLocation.PlayerLocation);
+            connectedRoom = MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation);
+
+            for(int i = 0; i <= adjRooms.Length - 1; i++) 
+            { 
+                for (int y = 0; y <= connectedRoom.Count - 1; y++)
+                {
+                    if(adjRooms[i] == connectedRoom[y])
+                    {
+                        if (y == 0)
+                        {
+                            canRoom1 = true;
+                        } else if (y == 1)
+                        {
+                            canRoom2 = true;
+                        }
+                        else if (y == 2)
+                        {
+                            canRoom3 = true;
+                        }
+                        else if (y == 3)
+                        {
+                            canRoom4 = true;
+                        }
+                        else if (y == 4)
+                        {
+                            canRoom5 = true;
+                        }
+                        else if (y == 5)
+                        {
+                            canRoom6 = true;
+                        }
+                    }
+                }
+            }
         }
 
         public Task TypeWriterEffect(string txt, Label lbl, int delay) {
@@ -59,10 +95,10 @@ namespace Team_3_Hunt_The_Wumpus
                 }
             });
         }
-        bool canRoom1;
-        bool canRoom2;
-        bool canRoom3;
-        bool canRoom4;
+        bool canRoom1 = false;
+        bool canRoom2 = false;
+        bool canRoom3 = false;
+        bool canRoom4 = false;
         bool canRoom5;
         bool canRoom6;
         private void panel1_Paint(object sender, PaintEventArgs e) {
