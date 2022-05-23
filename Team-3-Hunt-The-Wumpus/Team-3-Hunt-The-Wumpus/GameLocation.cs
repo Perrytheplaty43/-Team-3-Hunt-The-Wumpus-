@@ -23,7 +23,8 @@ namespace Team_3_Hunt_The_Wumpus
 
         //constructor
 
-        public GameLocation() {
+        public GameLocation() 
+        {
             RandomizeAllLocations();
         }
 
@@ -40,13 +41,12 @@ namespace Team_3_Hunt_The_Wumpus
         // randomizes wumpus location to 2-4 rooms away from its current location when it runs away
         public void RunAwayWumpusLocation()
         {
-            string possibleRooms;
+            List<int> possibleRooms;
             int room;
 
             // finds all adjacent rooms that the wumpus could go to
             possibleRooms = cave.GetAdjacentRooms(WumpusLocation);
-            room = rndRoom.Next(4);
-            WumpusLocation = room;
+            
         }
 
         // resets wumpus location when the game is restarted
@@ -120,7 +120,7 @@ namespace Team_3_Hunt_The_Wumpus
             }
         }
 
-        // returns a random piece of trivia depending on questions asked
+        // returns a random piece of trivia depending on questions asked (array of answers?)
         public string GetHint()
         {
             return ""; 
