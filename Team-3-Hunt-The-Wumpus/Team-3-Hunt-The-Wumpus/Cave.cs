@@ -198,7 +198,7 @@ namespace Team_3_Hunt_The_Wumpus
         public int[] GetAdjacentRooms(int room)
         {
             int[] adjacent = new int[6];
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 6; i++)
             {               
                 adjacent[i] = adjacentRooms[room, i];
             }
@@ -209,7 +209,7 @@ namespace Team_3_Hunt_The_Wumpus
         {
             List<int> connected = new List<int>();
 
-            for(int i = 0; i < 7; i++)
+            for(int i = 0; i < 6; i++)
             {
                 connected.Add(connectedRooms1[room, i]);
                 //fix for all rooms
