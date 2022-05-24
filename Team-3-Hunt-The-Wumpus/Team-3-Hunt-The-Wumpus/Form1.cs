@@ -286,7 +286,7 @@ namespace Team_3_Hunt_The_Wumpus
                     }
                     if (!MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation).Contains(roomMove)) {
                         richTextBoxOutput.ForeColor = Color.Red;
-                        richTextBoxOutput.Text += "\nyou can enter room " + roomMove;
+                        richTextBoxOutput.Text += "\nyou can't enter room " + roomMove;
                         textBoxCommand.Clear();
                         return;
                     }
