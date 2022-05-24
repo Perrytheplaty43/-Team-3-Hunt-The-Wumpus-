@@ -284,6 +284,12 @@ namespace Team_3_Hunt_The_Wumpus
                         richTextBoxOutput.Text = " Invalid Room";
                         return;
                     }
+                    if (!MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation).Contains(roomMove)) {
+                        richTextBoxOutput.ForeColor = Color.Red;
+                        richTextBoxOutput.Text += "\nyou can enter room " + roomMove;
+                        textBoxCommand.Clear();
+                        return;
+                    }
                     MyGameLocation.PlayerLocation = roomMove;
                     textBoxCommand.Clear();
                     refresh();
