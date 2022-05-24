@@ -35,6 +35,7 @@ namespace Team_3_Hunt_The_Wumpus
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -63,6 +64,7 @@ namespace Team_3_Hunt_The_Wumpus
             this.textBoxCommand.Size = new System.Drawing.Size(1287, 50);
             this.textBoxCommand.TabIndex = 1;
             this.textBoxCommand.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxCommand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxCommand_KeyDown);
             // 
             // panel1
             // 
@@ -74,11 +76,22 @@ namespace Team_3_Hunt_The_Wumpus
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // richTextBoxOutput
+            // 
+            this.richTextBoxOutput.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.richTextBoxOutput.BackColor = System.Drawing.Color.Black;
+            this.richTextBoxOutput.Location = new System.Drawing.Point(181, 576);
+            this.richTextBoxOutput.Name = "richTextBoxOutput";
+            this.richTextBoxOutput.Size = new System.Drawing.Size(960, 96);
+            this.richTextBoxOutput.TabIndex = 2;
+            this.richTextBoxOutput.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 728);
+            this.Controls.Add(this.richTextBoxOutput);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBoxCommand);
             this.Controls.Add(this.label1);
@@ -95,6 +108,7 @@ namespace Team_3_Hunt_The_Wumpus
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxCommand;
         private System.Windows.Forms.Panel panel1;
+        private RichTextBox richTextBoxOutput;
     }
 }
 
