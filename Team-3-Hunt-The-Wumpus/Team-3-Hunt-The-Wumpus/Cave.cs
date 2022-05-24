@@ -212,7 +212,7 @@ namespace Team_3_Hunt_The_Wumpus
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    connected.Add(connectedRooms1[room, i]);
+                    connected.Add(connectedRooms1[room -1, i]);
                     connected.Remove(0);
                 }
             }
@@ -220,7 +220,7 @@ namespace Team_3_Hunt_The_Wumpus
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    connected.Add(connectedRooms2[room, i]);
+                    connected.Add(connectedRooms2[room -1, i]);
                     connected.Remove(0);
                 }
             }
@@ -228,7 +228,7 @@ namespace Team_3_Hunt_The_Wumpus
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    connected.Add(connectedRooms3[room, i]);
+                    connected.Add(connectedRooms3[room -1, i]);
                     connected.Remove(0);
                 }
             }
@@ -236,7 +236,7 @@ namespace Team_3_Hunt_The_Wumpus
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    connected.Add(connectedRooms4[room, i]);
+                    connected.Add(connectedRooms4[room -1, i]);
                     connected.Remove(0);
                 }
             }
@@ -244,7 +244,7 @@ namespace Team_3_Hunt_The_Wumpus
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    connected.Add(connectedRooms5[room, i]);
+                    connected.Add(connectedRooms5[room -1, i]);
                     connected.Remove(0);
                 }
             }                        
