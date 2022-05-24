@@ -57,26 +57,26 @@ namespace Team_3_Hunt_The_Wumpus
                 {
                     if(adjRooms[i] == connectedRoom[y])
                     {
-                        if (y == 0)
+                        if (i == 0)
                         {
                             canRoom1 = true;
-                        } else if (y == 1)
+                        } else if (i == 1)
                         {
                             canRoom2 = true;
                         }
-                        else if (y == 2)
+                        else if (i == 2)
                         {
                             canRoom3 = true;
                         }
-                        else if (y == 3)
+                        else if (i == 3)
                         {
                             canRoom4 = true;
                         }
-                        else if (y == 4)
+                        else if (i == 4)
                         {
                             canRoom5 = true;
                         }
-                        else if (y == 5)
+                        else if (i == 5)
                         {
                             canRoom6 = true;
                         }
@@ -284,6 +284,7 @@ namespace Team_3_Hunt_The_Wumpus
                         richTextBoxOutput.Text = " Invalid Room";
                         return;
                     }
+                    var x = MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation);
                     if (!MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation).Contains(roomMove)) {
                         richTextBoxOutput.ForeColor = Color.Red;
                         richTextBoxOutput.Text += "\nyou can't enter room " + roomMove;
@@ -309,17 +310,17 @@ namespace Team_3_Hunt_The_Wumpus
             for (int i = 0; i <= adjRooms.Length - 1; i++) {
                 for (int y = 0; y <= connectedRoom.Count - 1; y++) {
                     if (adjRooms[i] == connectedRoom[y]) {
-                        if (y == 0) {
+                        if (i == 0) {
                             canRoom1 = true;
-                        } else if (y == 1) {
+                        } else if (i == 1) {
                             canRoom2 = true;
-                        } else if (y == 2) {
+                        } else if (i == 2) {
                             canRoom3 = true;
-                        } else if (y == 3) {
+                        } else if (i == 3) {
                             canRoom4 = true;
-                        } else if (y == 4) {
+                        } else if (i == 4) {
                             canRoom5 = true;
-                        } else if (y == 5) {
+                        } else if (i == 5) {
                             canRoom6 = true;
                         }
                     }

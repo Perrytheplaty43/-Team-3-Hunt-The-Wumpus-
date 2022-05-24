@@ -200,7 +200,7 @@ namespace Team_3_Hunt_The_Wumpus
             int[] adjacent = new int[6];
             for (int i = 0; i < 6; i++)
             {               
-                adjacent[i] = adjacentRooms[room, i];
+                adjacent[i] = adjacentRooms[room - 1, i];
             }
             return adjacent;
         }
@@ -211,7 +211,7 @@ namespace Team_3_Hunt_The_Wumpus
 
             for(int i = 0; i < 6; i++)
             {
-                connected.Add(connectedRooms1[room, i]);
+                connected.Add(connectedRooms1[room - 1, i]);
                 connected.Remove(0);
                 //fix for all rooms
             }            
