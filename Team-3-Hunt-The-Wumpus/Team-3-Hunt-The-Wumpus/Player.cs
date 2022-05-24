@@ -43,7 +43,7 @@ namespace Team_3_Hunt_The_Wumpus
         }
         public int GetEndScore()
         {            
-            int wumpus = 0;
+            int wumpus;
             if (WumpusAlive == true) wumpus = 0;
             else  wumpus = 50;
             int endScore = 100 - Turns + Coins + (5 * Arrows) + wumpus;
