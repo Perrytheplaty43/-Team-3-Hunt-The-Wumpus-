@@ -18,11 +18,10 @@ namespace Team_3_Hunt_The_Wumpus
         public int Bat2Location { get; set; }
         public bool WinOrLose { get; set; }
 
-        Cave cave = new Cave();
-        Random rndRoom = new Random();
+        Cave cave = new();
+        Random rndRoom = new();
 
         //constructor
-
         public GameLocation() 
         {
             RandomizeAllLocations();
@@ -44,9 +43,11 @@ namespace Team_3_Hunt_The_Wumpus
             int[] possibleRooms;
             int room;
 
-            // finds all adjacent rooms that the wumpus could go to
+            // finds all adjacent rooms that the wumpus could go to and picks a random room for it to go to out of the six possible
             possibleRooms = cave.GetAdjacentRooms(WumpusLocation);
-            
+            room = possibleRooms[rndRoom.Next(7)];
+
+            WumpusLocation = room;
         }
 
         // resets wumpus location when the game is restarted
