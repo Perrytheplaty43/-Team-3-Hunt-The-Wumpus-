@@ -17,6 +17,7 @@ namespace Team_3_Hunt_The_Wumpus
         public Cave MyCave = new Cave();
         public GameLocation MyGameLocation = new GameLocation();
         public PrivateFontCollection pfc = new PrivateFontCollection();
+        public Player MyPlayer = new Player();
         public Form1() {
             [DllImport("gdi32.dll")]
             static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
@@ -42,6 +43,8 @@ namespace Team_3_Hunt_The_Wumpus
             
             textBoxCommand.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
             richTextBoxOutput.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
+            label2.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
+            richTextBoxWarn.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
         }
         int[] adjRooms;
         List<int> connectedRoom;
@@ -90,6 +93,7 @@ namespace Team_3_Hunt_The_Wumpus
             room5 = adjRooms[4];
             room6 = adjRooms[5];
             roomP = MyGameLocation.PlayerLocation;
+            richTextBoxWarn.Text = MyGameLocation.GiveWarning();
         }
 
         public Task TypeWriterEffect(string txt, Label lbl, int delay) {
@@ -284,7 +288,6 @@ namespace Team_3_Hunt_The_Wumpus
                         richTextBoxOutput.Text = " Invalid Room";
                         return;
                     }
-                    var x = MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation);
                     if (!MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation).Contains(roomMove)) {
                         richTextBoxOutput.ForeColor = Color.Red;
                         richTextBoxOutput.Text += "\nyou can't enter room " + roomMove;
@@ -293,6 +296,7 @@ namespace Team_3_Hunt_The_Wumpus
                     }
                     MyGameLocation.PlayerLocation = roomMove;
                     textBoxCommand.Clear();
+                    MyPlayer.IncreaseTurns();
                     refresh();
                 }
             }
@@ -333,6 +337,8 @@ namespace Team_3_Hunt_The_Wumpus
             room5 = adjRooms[4];
             room6 = adjRooms[5];
             roomP = MyGameLocation.PlayerLocation;
+            richTextBoxWarn.Clear();
+            richTextBoxWarn.Text = MyGameLocation.GiveWarning();
             panel1.Invalidate();
         }
     }

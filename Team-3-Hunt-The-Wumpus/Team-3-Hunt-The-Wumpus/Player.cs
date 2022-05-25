@@ -6,20 +6,12 @@ using System.Threading.Tasks;
 
 namespace Team_3_Hunt_The_Wumpus
 {
-    class Player
+    public class Player
     {
-        public bool WumpusAlive { get; set; }
-        public int Arrows { get; set; }
-        public int Coins { get; set; }
-        public int Turns { get; set; }
-
-        public Player(int a, int c, int t, bool wa)
-        {
-            Arrows = a;
-            Coins = c;
-            Turns = t;
-            WumpusAlive = wa;
-        }
+        public bool WumpusAlive = true;
+        public int Arrows = 0;
+        public int Coins = 0;
+        public int Turns = 0;
         
         public void IncreaseArrows()
         {
