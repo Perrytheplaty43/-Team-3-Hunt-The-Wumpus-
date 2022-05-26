@@ -3,24 +3,72 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+
+
 
 namespace Team_3_Hunt_The_Wumpus
 {
-    class Trivia
+    public class Trivia
     {
-     
-        public int QuestionsAsked { get; set; }
-        public int QuestionsRight { get; set; }
-        public int QuestionsWrong { get; set; }
+        String[,] questionList;
+        private int numberOfQuestionsRight;
+        int numberOfQuestionsAsked;
+        private int[] askedQuestions = new int[5];
+        int caveNumber;
 
-
-        public Trivia(int qa, int qr, int qw)
+        //constructor
+        public Trivia(int cn)
         {
-            QuestionsAsked = qa;
-            QuestionsRight = qr;
-            QuestionsWrong = qw; 
+            caveNumber = cn;
+            string[] lines = System.IO.File.ReadAllLines("");
+            //String[]lines = File.ReadAllLines() //read in trivia questions from txt file
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string[] questions = lines[i].Split(',');
+                //for (int )
+
+            }
+
+        }
+    
+
+        public bool newTriviaRound (int cn, int totalNumberQs)
+        {
+            numberOfQuestionsAsked = totalNumberQs;
+            caveNumber = cn;
+            caveNumber -= 1;
+            askQuestion(); // ask trivia questions
+            return true;
+
         }
 
+        public void recordAnswer(bool isRight)
+        {
+            // if answer is correct
+            if (isRight == true) { numberOfQuestionsRight++; }
+
+            if (numberOfQuestionsAsked > 0) { askQuestion(); }
+
+        }
+
+        private void askQuestion ()
+        {
+            //random number generator (1-4)
+            Random r = new Random();
+            int indexOfRightAnswer = r.Next(4) + 1;
+
+            int totalNumberQs = caveNumber * 10;
+            totalNumberQs += askedQuestions[caveNumber];
+
+            //UI
+
+        }
+     
+       
+
+       
 
     }
 
