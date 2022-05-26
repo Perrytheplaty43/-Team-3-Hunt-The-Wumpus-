@@ -36,6 +36,8 @@ namespace Team_3_Hunt_The_Wumpus
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxWarn = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -86,11 +88,38 @@ namespace Team_3_Hunt_The_Wumpus
             this.richTextBoxOutput.TabIndex = 2;
             this.richTextBoxOutput.Text = "";
             // 
+            // richTextBoxWarn
+            // 
+            this.richTextBoxWarn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.richTextBoxWarn.BackColor = System.Drawing.Color.Black;
+            this.richTextBoxWarn.ForeColor = System.Drawing.Color.Lime;
+            this.richTextBoxWarn.Location = new System.Drawing.Point(-91, 86);
+            this.richTextBoxWarn.Name = "richTextBoxWarn";
+            this.richTextBoxWarn.ReadOnly = true;
+            this.richTextBoxWarn.Size = new System.Drawing.Size(326, 306);
+            this.richTextBoxWarn.TabIndex = 3;
+            this.richTextBoxWarn.Text = "";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.Lime;
+            this.label2.Location = new System.Drawing.Point(-73, 173);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(185, 50);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Warnings:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 728);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.richTextBoxWarn);
             this.Controls.Add(this.richTextBoxOutput);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBoxCommand);
@@ -109,6 +138,8 @@ namespace Team_3_Hunt_The_Wumpus
         private System.Windows.Forms.TextBox textBoxCommand;
         private System.Windows.Forms.Panel panel1;
         private RichTextBox richTextBoxOutput;
+        private RichTextBox richTextBoxWarn;
+        private Label label2;
     }
 }
 

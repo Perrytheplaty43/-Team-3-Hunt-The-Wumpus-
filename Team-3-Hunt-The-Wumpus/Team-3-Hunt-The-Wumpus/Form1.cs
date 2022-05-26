@@ -17,6 +17,7 @@ namespace Team_3_Hunt_The_Wumpus
         public Cave MyCave = new Cave();
         public GameLocation MyGameLocation = new GameLocation();
         public PrivateFontCollection pfc = new PrivateFontCollection();
+        public Player MyPlayer = new Player();
         public Form1() {
             [DllImport("gdi32.dll")]
             static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
@@ -42,6 +43,8 @@ namespace Team_3_Hunt_The_Wumpus
             
             textBoxCommand.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
             richTextBoxOutput.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
+            label2.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
+            richTextBoxWarn.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
         }
         int[] adjRooms;
         List<int> connectedRoom;
@@ -57,26 +60,26 @@ namespace Team_3_Hunt_The_Wumpus
                 {
                     if(adjRooms[i] == connectedRoom[y])
                     {
-                        if (y == 0)
+                        if (i == 0)
                         {
                             canRoom1 = true;
-                        } else if (y == 1)
+                        } else if (i == 1)
                         {
                             canRoom2 = true;
                         }
-                        else if (y == 2)
+                        else if (i == 2)
                         {
                             canRoom3 = true;
                         }
-                        else if (y == 3)
+                        else if (i == 3)
                         {
                             canRoom4 = true;
                         }
-                        else if (y == 4)
+                        else if (i == 4)
                         {
                             canRoom5 = true;
                         }
-                        else if (y == 5)
+                        else if (i == 5)
                         {
                             canRoom6 = true;
                         }
@@ -90,6 +93,7 @@ namespace Team_3_Hunt_The_Wumpus
             room5 = adjRooms[4];
             room6 = adjRooms[5];
             roomP = MyGameLocation.PlayerLocation;
+            richTextBoxWarn.Text = MyGameLocation.GiveWarning();
         }
 
         public Task TypeWriterEffect(string txt, Label lbl, int delay) {
@@ -292,6 +296,7 @@ namespace Team_3_Hunt_The_Wumpus
                     }
                     MyGameLocation.PlayerLocation = roomMove;
                     textBoxCommand.Clear();
+                    MyPlayer.IncreaseTurns();
                     refresh();
                 }
             }
@@ -309,17 +314,17 @@ namespace Team_3_Hunt_The_Wumpus
             for (int i = 0; i <= adjRooms.Length - 1; i++) {
                 for (int y = 0; y <= connectedRoom.Count - 1; y++) {
                     if (adjRooms[i] == connectedRoom[y]) {
-                        if (y == 0) {
+                        if (i == 0) {
                             canRoom1 = true;
-                        } else if (y == 1) {
+                        } else if (i == 1) {
                             canRoom2 = true;
-                        } else if (y == 2) {
+                        } else if (i == 2) {
                             canRoom3 = true;
-                        } else if (y == 3) {
+                        } else if (i == 3) {
                             canRoom4 = true;
-                        } else if (y == 4) {
+                        } else if (i == 4) {
                             canRoom5 = true;
-                        } else if (y == 5) {
+                        } else if (i == 5) {
                             canRoom6 = true;
                         }
                     }
@@ -332,6 +337,8 @@ namespace Team_3_Hunt_The_Wumpus
             room5 = adjRooms[4];
             room6 = adjRooms[5];
             roomP = MyGameLocation.PlayerLocation;
+            richTextBoxWarn.Clear();
+            richTextBoxWarn.Text = MyGameLocation.GiveWarning();
             panel1.Invalidate();
         }
     }
