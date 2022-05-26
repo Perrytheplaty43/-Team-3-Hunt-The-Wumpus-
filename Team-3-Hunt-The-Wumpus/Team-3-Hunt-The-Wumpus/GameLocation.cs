@@ -81,21 +81,21 @@ namespace Team_3_Hunt_The_Wumpus
             Bat2Location = room2;
         }
 
-        // returns a room-specific warning
+        // returns a room-specific warning (probably every time player moves to a new room)
         public string GiveWarning()
         {
-            // different outcome based on which room player is near
-            if (PlayerLocation == WumpusLocation)
+            // different outcome based on which room player is near (can give multiple warnings if necessary)
+            if (cave.GetAdjacentRooms(PlayerLocation).Contains(WumpusLocation))
             {
                 // wumpus
                 return "I smell a Wumpus!";
             }
-            else if (PlayerLocation == Bat1Location || PlayerLocation == Bat2Location)
+            if (cave.GetAdjacentRooms(PlayerLocation).Contains(Bat1Location) || cave.GetAdjacentRooms(PlayerLocation).Contains(Bat2Location))
             {
                 // pits
                 return "Bats nearby!";
             }
-            else if (PlayerLocation == Pit1Location || PlayerLocation == Pit2Location)
+            if (cave.GetAdjacentRooms(PlayerLocation).Contains(Pit1Location) || cave.GetAdjacentRooms(PlayerLocation).Contains(Pit2Location))
             {
                 // bats
                 return "I feel a draft!";
