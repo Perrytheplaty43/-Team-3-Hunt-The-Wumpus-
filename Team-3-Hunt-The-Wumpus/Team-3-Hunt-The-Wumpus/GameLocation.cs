@@ -18,11 +18,11 @@ namespace Team_3_Hunt_The_Wumpus
         public int Bat2Location { get; set; }
         public bool WinOrLose { get; set; }
 
-        Cave cave = new();
-        Random rndRoom = new();
+        Cave cave = new Cave();
+        Random rndRoom = new Random();
 
         //constructor
-        public GameLocation() 
+        public GameLocation()
         {
             RandomizeAllLocations();
         }
@@ -33,7 +33,7 @@ namespace Team_3_Hunt_The_Wumpus
         {
             int room;
 
-            room = rndRoom.Next(30);
+            room = rndRoom.Next(31);
             PlayerLocation = room;
         }
 
@@ -45,7 +45,7 @@ namespace Team_3_Hunt_The_Wumpus
 
             // finds all adjacent rooms that the wumpus could go to and picks a random room for it to go to out of the six possible
             possibleRooms = cave.GetAdjacentRooms(WumpusLocation);
-            room = possibleRooms[rndRoom.Next(7)];
+            room = possibleRooms[rndRoom.Next(6)];
 
             WumpusLocation = room;
         }
@@ -55,7 +55,7 @@ namespace Team_3_Hunt_The_Wumpus
         {
             int room;
 
-            room = rndRoom.Next(30);
+            room = rndRoom.Next(31);
             WumpusLocation = room;
         }
 
@@ -63,9 +63,9 @@ namespace Team_3_Hunt_The_Wumpus
         public void RandomizePitsLocation()
         {
             int room1, room2;
-            
-            room1 = rndRoom.Next(30);
-            room2 = rndRoom.Next(30);
+
+            room1 = rndRoom.Next(31);
+            room2 = rndRoom.Next(31);
             Pit1Location = room1;
             Pit2Location = room2;
         }
@@ -75,8 +75,8 @@ namespace Team_3_Hunt_The_Wumpus
         {
             int room1, room2;
 
-            room1 = rndRoom.Next(30);
-            room2 = rndRoom.Next(30);
+            room1 = rndRoom.Next(31);
+            room2 = rndRoom.Next(31);
             Bat1Location = room1;
             Bat2Location = room2;
         }
@@ -124,7 +124,7 @@ namespace Team_3_Hunt_The_Wumpus
         // returns a random piece of trivia depending on questions asked (array of answers?)
         public string GetHint()
         {
-            return ""; 
+            return "";
         }
 
         // ends game if player wins or loses (true = win, false = lose)
