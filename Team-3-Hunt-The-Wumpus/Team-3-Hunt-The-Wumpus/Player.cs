@@ -12,7 +12,7 @@ namespace Team_3_Hunt_The_Wumpus
         public int Arrows = 0;
         public int Coins = 0;
         public int Turns = 0;
-        
+
         public void IncreaseArrows()
         {
             Arrows++;
