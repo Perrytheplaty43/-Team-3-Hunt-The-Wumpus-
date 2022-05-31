@@ -340,6 +340,20 @@ namespace Team_3_Hunt_The_Wumpus
             richTextBoxWarn.Clear();
             richTextBoxWarn.Text = MyGameLocation.GiveWarning();
             panel1.Invalidate();
+
+            if(MyGameLocation.Bat1Location == MyGameLocation.PlayerLocation || MyGameLocation.Bat2Location == MyGameLocation.PlayerLocation)
+            {
+                richTextBoxOutput.Text = "You have been attacked by bats.\nYour location has been randomized.";
+                MyGameLocation.RandomizePlayerLocation();
+                room1 = adjRooms[0];
+                room2 = adjRooms[1];
+                room3 = adjRooms[2];
+                room4 = adjRooms[3];
+                room5 = adjRooms[4];
+                room6 = adjRooms[5];
+                roomP = MyGameLocation.PlayerLocation;
+                panel1.Invalidate();
+            }
         }
     }
 }
