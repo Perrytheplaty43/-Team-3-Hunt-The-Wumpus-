@@ -46,7 +46,7 @@ namespace Team_3_Hunt_The_Wumpus
             // this returns an array with 6 possible rooms
             possibleRooms = cave.GetAdjacentRooms(WumpusLocation);
             // this selects a random room out of the 6
-            room = possibleRooms[rndRoom.Next(7)];
+            room = possibleRooms[rndRoom.Next(6)];
 
             WumpusLocation = room;
         }
@@ -111,6 +111,7 @@ namespace Team_3_Hunt_The_Wumpus
             if (WumpusLocation == arrowLocation)
             {
                 // win game
+                WinOrLose = true;
                 EndGame(WinOrLose);
             }
             else
