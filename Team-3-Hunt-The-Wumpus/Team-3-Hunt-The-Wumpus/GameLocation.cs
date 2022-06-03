@@ -18,7 +18,7 @@ namespace Team_3_Hunt_The_Wumpus
         public int Bat2Location { get; set; }
         public bool WinOrLose { get; set; }
 
-        Random rndRoom = new Random();
+        //Random rndRoom = new Random();
 
         //constructor
         public GameLocation(Cave cave)
@@ -31,7 +31,7 @@ namespace Team_3_Hunt_The_Wumpus
         public void RandomizePlayerLocation()
         {
             int room;
-
+            Random rndRoom = new Random();
             room = rndRoom.Next(31);
             PlayerLocation = room;
         }
@@ -39,6 +39,7 @@ namespace Team_3_Hunt_The_Wumpus
         // randomizes wumpus location to 2-4 rooms away from its current location when it runs away
         public void RunAwayWumpusLocation(Cave cave)
         {
+            Random rndRoom = new Random();
             int[] possibleRooms;
             int room;
 
@@ -53,6 +54,7 @@ namespace Team_3_Hunt_The_Wumpus
         // resets wumpus location when the game is restarted
         public void RandomizeWumpusLocation()
         {
+            Random rndRoom = new Random();
             int room;
 
             room = rndRoom.Next(31);
@@ -62,6 +64,7 @@ namespace Team_3_Hunt_The_Wumpus
         // randomizes the locations of both pit rooms 
         public void RandomizePitsLocation()
         {
+            Random rndRoom = new Random();
             int room1, room2;
 
             room1 = rndRoom.Next(31);
@@ -73,6 +76,7 @@ namespace Team_3_Hunt_The_Wumpus
         // randomizes the locations of both bat rooms 
         public void RandomizeBatsLocation()
         {
+            Random rndRoom = new Random();
             int room1, room2;
 
             room1 = rndRoom.Next(31);
