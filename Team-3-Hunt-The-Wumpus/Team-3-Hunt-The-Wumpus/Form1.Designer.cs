@@ -38,6 +38,8 @@ namespace Team_3_Hunt_The_Wumpus
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
             this.richTextBoxWarn = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.richTextBoxTrivia = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -113,11 +115,38 @@ namespace Team_3_Hunt_The_Wumpus
             this.label2.TabIndex = 4;
             this.label2.Text = "Warnings:";
             // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.Lime;
+            this.label3.Location = new System.Drawing.Point(979, 183);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(114, 50);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Trivia:";
+            // 
+            // richTextBoxTrivia
+            // 
+            this.richTextBoxTrivia.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.richTextBoxTrivia.BackColor = System.Drawing.Color.Black;
+            this.richTextBoxTrivia.ForeColor = System.Drawing.Color.Lime;
+            this.richTextBoxTrivia.Location = new System.Drawing.Point(961, 96);
+            this.richTextBoxTrivia.Name = "richTextBoxTrivia";
+            this.richTextBoxTrivia.ReadOnly = true;
+            this.richTextBoxTrivia.Size = new System.Drawing.Size(326, 306);
+            this.richTextBoxTrivia.TabIndex = 5;
+            this.richTextBoxTrivia.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 728);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.richTextBoxTrivia);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.richTextBoxWarn);
             this.Controls.Add(this.richTextBoxOutput);
@@ -140,6 +169,8 @@ namespace Team_3_Hunt_The_Wumpus
         private RichTextBox richTextBoxOutput;
         private RichTextBox richTextBoxWarn;
         private Label label2;
+        private Label label3;
+        private RichTextBox richTextBoxTrivia;
     }
 }
 

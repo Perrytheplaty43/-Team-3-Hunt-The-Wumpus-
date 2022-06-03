@@ -45,6 +45,8 @@ namespace Team_3_Hunt_The_Wumpus
             richTextBoxOutput.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
             label2.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
             richTextBoxWarn.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
+            label3.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
+            richTextBoxTrivia.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
         }
         int[] adjRooms;
         List<int> connectedRoom;
