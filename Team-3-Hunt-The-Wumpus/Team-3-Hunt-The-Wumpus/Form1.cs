@@ -14,8 +14,8 @@ namespace Team_3_Hunt_The_Wumpus
 {
     public partial class Form1 : Form
     {
-        public Cave MyCave = new Cave();
-        public GameLocation MyGameLocation = new GameLocation();
+        public Cave MyCave;
+        public GameLocation MyGameLocation;
         public PrivateFontCollection pfc = new PrivateFontCollection();
         public Player MyPlayer = new Player();
         public Form1() {
@@ -50,6 +50,9 @@ namespace Team_3_Hunt_The_Wumpus
         List<int> connectedRoom;
         private void Form1_Load(object sender, EventArgs e)
         {
+            MyCave = new Cave();
+            MyGameLocation = new GameLocation(MyCave);
+
             TypeWriterEffect("Hunt the Wumpus", label1, 50);
             adjRooms = MyCave.GetAdjacentRooms(MyGameLocation.PlayerLocation);
             connectedRoom = MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation);
@@ -93,7 +96,7 @@ namespace Team_3_Hunt_The_Wumpus
             room5 = adjRooms[4];
             room6 = adjRooms[5];
             roomP = MyGameLocation.PlayerLocation;
-            richTextBoxWarn.Text = MyGameLocation.GiveWarning();
+            richTextBoxWarn.Text = MyGameLocation.GiveWarning(MyCave);
         }
 
         public Task TypeWriterEffect(string txt, Label lbl, int delay) {
@@ -338,7 +341,7 @@ namespace Team_3_Hunt_The_Wumpus
             room6 = adjRooms[5];
             roomP = MyGameLocation.PlayerLocation;
             richTextBoxWarn.Clear();
-            richTextBoxWarn.Text = MyGameLocation.GiveWarning();
+            richTextBoxWarn.Text = MyGameLocation.GiveWarning(MyCave);
             panel1.Invalidate();
 
             if(MyGameLocation.Bat1Location == MyGameLocation.PlayerLocation || MyGameLocation.Bat2Location == MyGameLocation.PlayerLocation)

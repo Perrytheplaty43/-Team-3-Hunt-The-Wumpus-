@@ -18,13 +18,12 @@ namespace Team_3_Hunt_The_Wumpus
         public int Bat2Location { get; set; }
         public bool WinOrLose { get; set; }
 
-        Cave cave = new Cave();
         Random rndRoom = new Random();
 
         //constructor
-        public GameLocation()
+        public GameLocation(Cave cave)
         {
-            RandomizeAllLocations();
+            RandomizeAllLocations(cave);
         }
 
         // functions
@@ -38,7 +37,7 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // randomizes wumpus location to 2-4 rooms away from its current location when it runs away
-        public void RunAwayWumpusLocation()
+        public void RunAwayWumpusLocation(Cave cave)
         {
             int[] possibleRooms;
             int room;
@@ -83,7 +82,7 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // returns a room-specific warning (probably every time player moves to a new room)
-        public string GiveWarning()
+        public string GiveWarning(Cave cave)
         {
             // different outcome based on which room player is near (can give multiple warnings if necessary)
             if (cave.GetAdjacentRooms(PlayerLocation).Contains(WumpusLocation))
@@ -105,19 +104,19 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // shoots an arrow to a specific room
-        public void ShootArrow(int arrowLocation)
+        public void ShootArrow(int arrowLocation, Cave cave)
         {
             // different outcome based on whether the arrow hits wumpus
             if (WumpusLocation == arrowLocation)
             {
                 // win game
                 WinOrLose = true;
-                EndGame(WinOrLose);
+                EndGame(WinOrLose, cave);
             }
             else
             {
                 // wumpus runs away
-                RunAwayWumpusLocation();
+                RunAwayWumpusLocation(cave);
             }
         }
 
@@ -128,23 +127,23 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // ends game if player wins or loses (true = win, false = lose)
-        public void EndGame(bool wL)
+        public void EndGame(bool wL, Cave cave)
         {
             // based on whether the player has won or lost, sends something different to ui; also resets game -> randomizes all locations
             if (wL == true)
             {
                 // win
-                RandomizeAllLocations();
+                RandomizeAllLocations(cave);
             }
             else if (wL == false)
             {
                 // lose
-                RandomizeAllLocations();
+                RandomizeAllLocations(cave);
             }
         }
 
         // resets locations, regardless of whether or not a player has won
-        public void RandomizeAllLocations()
+        public void RandomizeAllLocations(Cave cave)
         {
             RandomizePlayerLocation();
             RandomizeWumpusLocation();
