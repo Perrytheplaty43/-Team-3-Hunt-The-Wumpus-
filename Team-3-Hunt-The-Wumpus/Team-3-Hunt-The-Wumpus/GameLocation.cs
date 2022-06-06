@@ -18,13 +18,12 @@ namespace Team_3_Hunt_The_Wumpus
         public int Bat2Location { get; set; }
         public bool WinOrLose { get; set; }
 
-        Cave cave = new Cave();
-        Random rndRoom = new Random();
+        //Random rndRoom = new Random();
 
         //constructor
-        public GameLocation()
+        public GameLocation(Cave cave)
         {
-            RandomizeAllLocations();
+            RandomizeAllLocations(cave);
         }
 
         // functions
@@ -32,21 +31,22 @@ namespace Team_3_Hunt_The_Wumpus
         public void RandomizePlayerLocation()
         {
             int room;
-
+            Random rndRoom = new Random();
             room = rndRoom.Next(31);
             PlayerLocation = room;
         }
 
         // randomizes wumpus location to 2-4 rooms away from its current location when it runs away
-        public void RunAwayWumpusLocation()
+        public void RunAwayWumpusLocation(Cave cave)
         {
+            Random rndRoom = new Random();
             int[] possibleRooms;
             int room;
 
             // this returns an array with 6 possible rooms
             possibleRooms = cave.GetAdjacentRooms(WumpusLocation);
             // this selects a random room out of the 6
-            room = possibleRooms[rndRoom.Next(7)];
+            room = possibleRooms[rndRoom.Next(6)];
 
             WumpusLocation = room;
         }
@@ -54,6 +54,7 @@ namespace Team_3_Hunt_The_Wumpus
         // resets wumpus location when the game is restarted
         public void RandomizeWumpusLocation()
         {
+            Random rndRoom = new Random();
             int room;
 
             room = rndRoom.Next(31);
@@ -63,6 +64,7 @@ namespace Team_3_Hunt_The_Wumpus
         // randomizes the locations of both pit rooms 
         public void RandomizePitsLocation()
         {
+            Random rndRoom = new Random();
             int room1, room2;
 
             room1 = rndRoom.Next(31);
@@ -74,6 +76,7 @@ namespace Team_3_Hunt_The_Wumpus
         // randomizes the locations of both bat rooms 
         public void RandomizeBatsLocation()
         {
+            Random rndRoom = new Random();
             int room1, room2;
 
             room1 = rndRoom.Next(31);
@@ -83,7 +86,7 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // returns a room-specific warning (probably every time player moves to a new room)
-        public string GiveWarning()
+        public string GiveWarning(Cave cave)
         {
             // different outcome based on which room player is near (can give multiple warnings if necessary)
             if (cave.GetAdjacentRooms(PlayerLocation).Contains(WumpusLocation))
@@ -105,18 +108,19 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // shoots an arrow to a specific room
-        public void ShootArrow(int arrowLocation)
+        public void ShootArrow(int arrowLocation, Cave cave)
         {
             // different outcome based on whether the arrow hits wumpus
             if (WumpusLocation == arrowLocation)
             {
                 // win game
-                EndGame(WinOrLose);
+                WinOrLose = true;
+                EndGame(WinOrLose, cave);
             }
             else
             {
                 // wumpus runs away
-                RunAwayWumpusLocation();
+                RunAwayWumpusLocation(cave);
             }
         }
 
@@ -127,23 +131,23 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // ends game if player wins or loses (true = win, false = lose)
-        public void EndGame(bool wL)
+        public void EndGame(bool wL, Cave cave)
         {
             // based on whether the player has won or lost, sends something different to ui; also resets game -> randomizes all locations
             if (wL == true)
             {
                 // win
-                RandomizeAllLocations();
+                RandomizeAllLocations(cave);
             }
             else if (wL == false)
             {
                 // lose
-                RandomizeAllLocations();
+                RandomizeAllLocations(cave);
             }
         }
 
         // resets locations, regardless of whether or not a player has won
-        public void RandomizeAllLocations()
+        public void RandomizeAllLocations(Cave cave)
         {
             RandomizePlayerLocation();
             RandomizeWumpusLocation();
