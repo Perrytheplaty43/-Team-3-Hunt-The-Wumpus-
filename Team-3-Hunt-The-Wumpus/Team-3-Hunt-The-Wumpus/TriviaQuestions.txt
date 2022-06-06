@@ -1,57 +1,11 @@
-﻿What’s the shortcut for the “copy” function on most computers?
-Ctrl c
-Ctrl v
-Ctrl p
-Ctrl q
-Which scientist explained the concepts of gravity and motion?
-Bill Nye
-Benjamin Franklin
-Albert Einstein
-Issac Newton
-What part of the atom has no electric charge?
-Electrons
-Neutrons
-Protons
-Nucleus
-What is the symbol for potassium?
-K
-Po
-Pa
-Pt
-Which natural disaster is measured with a Richter scale?
-Earthquakes
-Hurricanes
-Blizzards
-Volcanic Erruptions
-What animals are pearls found in?
-Cats
-Meercats
-Oysters
-Jaguars
-Which cartoon character lives in a pineapple under the sea?
-Spongebob Squarepants
-Sandy Cheeks
-Plankton
-Mickey Mouse
-In which US city is Broadway located?
-Las Vegas
-Las Angeles
-New York City
-What other name does “corn” go by?
-Apple
-Maize
-Orange
-Banana
-Which American state is the largest (by area)?
-Alaska
-Texas
-California
-Rhode Island
-Which of the Seven Wonders is located in Egypt?
-Great Wall of China
-Machu Picchu
-Christ the Reedemer
-The Pyramids of Giza
-
-
-
+﻿What’s the shortcut for the “copy” function on most computers?,Ctrl c,Ctrl v,Ctrl p,Ctrl q
+Which scientist explained the concepts of gravity and motion?,Issac Newton,Bill Nye,Benjamin Franklin,Albert Einstein
+What part of the atom has no electric charge?,Neutrons,Electrons,Protons,Nucleus
+What is the symbol for potassium?,K,Po,Pa,Pt
+Which natural disaster is measured with a Richter scale?,Earthquakes,Hurricanes,Blizzards,Volcanic Erruptions
+What animals are pearls found in?,Oysters,Cats,Meercats,Jaguars
+Which cartoon character lives in a pineapple under the sea?,Spongebob Squarepants,Sandy Cheeks,Plankton,Mickey Mouse
+In which US city is Broadway located?,New York City,Las Vegas,Las Angeles,Orlando
+What other name does “corn” go by?,Maize,Apple,Orange,Banana
+Which American state is the largest (by area)?,Alaska,Texas,California,Rhode Island
+Which of the Seven Wonders is located in Egypt?,The Pyramids of Giza,Great Wall of China,Machu Picchu,Christ the Reedemer,

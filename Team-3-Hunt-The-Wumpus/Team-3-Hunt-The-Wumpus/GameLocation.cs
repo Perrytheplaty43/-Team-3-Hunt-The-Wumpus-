@@ -57,7 +57,7 @@ namespace Team_3_Hunt_The_Wumpus
             Random rndRoom = new Random();
             int room;
 
-            room = rndRoom.Next(31);
+            room = rndRoom.Next(30) + 1;
             WumpusLocation = room;
         }
 
@@ -67,8 +67,8 @@ namespace Team_3_Hunt_The_Wumpus
             Random rndRoom = new Random();
             int room1, room2;
 
-            room1 = rndRoom.Next(31);
-            room2 = rndRoom.Next(31);
+            room1 = rndRoom.Next(30) + 1;
+            room2 = rndRoom.Next(30) + 1;
             Pit1Location = room1;
             Pit2Location = room2;
         }
@@ -79,8 +79,8 @@ namespace Team_3_Hunt_The_Wumpus
             Random rndRoom = new Random();
             int room1, room2;
 
-            room1 = rndRoom.Next(31);
-            room2 = rndRoom.Next(31);
+            room1 = rndRoom.Next(30) + 1;
+            room2 = rndRoom.Next(30) + 1;
             Bat1Location = room1;
             Bat2Location = room2;
         }
