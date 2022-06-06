@@ -14,9 +14,9 @@ namespace Team_3_Hunt_The_Wumpus
         public bool DeadOrAlive { get; set; }
 
         // constructer
-        public Wumpus(Cave cave)
+        public Wumpus()
         {
-            gameLocation = new GameLocation(cave);
+            gameLocation = new GameLocation();
         }
 
         // functions

@@ -21,9 +21,9 @@ namespace Team_3_Hunt_The_Wumpus
         //Random rndRoom = new Random();
 
         //constructor
-        public GameLocation(Cave cave)
+        public GameLocation()
         {
-            RandomizeAllLocations(cave);
+            RandomizeAllLocations();
         }
 
         // functions
@@ -115,7 +115,7 @@ namespace Team_3_Hunt_The_Wumpus
             {
                 // win game
                 WinOrLose = true;
-                EndGame(WinOrLose, cave);
+                EndGame(WinOrLose);
             }
             else
             {
@@ -131,23 +131,23 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // ends game if player wins or loses (true = win, false = lose)
-        public void EndGame(bool wL, Cave cave)
+        public void EndGame(bool wL)
         {
             // based on whether the player has won or lost, sends something different to ui; also resets game -> randomizes all locations
             if (wL == true)
             {
                 // win
-                RandomizeAllLocations(cave);
+                RandomizeAllLocations();
             }
             else if (wL == false)
             {
                 // lose
-                RandomizeAllLocations(cave);
+                RandomizeAllLocations();
             }
         }
 
         // resets locations, regardless of whether or not a player has won
-        public void RandomizeAllLocations(Cave cave)
+        public void RandomizeAllLocations()
         {
             RandomizePlayerLocation();
             RandomizeWumpusLocation();
