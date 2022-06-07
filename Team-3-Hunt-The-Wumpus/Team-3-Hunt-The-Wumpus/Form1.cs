@@ -16,8 +16,11 @@ namespace Team_3_Hunt_The_Wumpus
     {
         public Cave MyCave;
         public GameLocation MyGameLocation;
+        public Trivia MyTrivia;
         public PrivateFontCollection pfc = new PrivateFontCollection();
         public Player MyPlayer = new Player();
+        int startingLocation;
+        bool trivia = false;
         public Form1() {
             [DllImport("gdi32.dll")]
             static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
@@ -46,14 +49,23 @@ namespace Team_3_Hunt_The_Wumpus
             label2.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
             richTextBoxWarn.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
             label3.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
-            richTextBoxTrivia.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
+            richTextBoxTrivia.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
         }
         int[] adjRooms;
         List<int> connectedRoom;
         private void Form1_Load(object sender, EventArgs e)
         {
             MyCave = new Cave();
+
+            Random random = new Random();
+            int randomNumber = random.Next(0, 4);
+            MyCave.SelectedCave = randomNumber;
+
+            MyTrivia = new Trivia(MyCave.SelectedCave);
+
             MyGameLocation = new GameLocation();
+
+            startingLocation = MyGameLocation.PlayerLocation;
 
             TypeWriterEffect("Hunt the Wumpus", label1, 50);
             adjRooms = MyCave.GetAdjacentRooms(MyGameLocation.PlayerLocation);
@@ -126,6 +138,9 @@ namespace Team_3_Hunt_The_Wumpus
         int room4;
         int room5;
         int room6;
+
+        string[][] questions;
+        int triviaNumber = 0;
         private void panel1_Paint(object sender, PaintEventArgs e) {
             var graphics = e.Graphics;
 
@@ -285,28 +300,101 @@ namespace Team_3_Hunt_The_Wumpus
         private void textBoxCommand_KeyDown(object sender, KeyEventArgs e) {
             int roomMove;
             if (e.KeyCode == Keys.Enter) {
-                if (textBoxCommand.Text.ToLower().StartsWith("move")) {
-                    try {
-                        roomMove = int.Parse(textBoxCommand.Text.Remove(0, 5));
-                    } catch {
-                        richTextBoxOutput.ForeColor = Color.Red;
-                        richTextBoxOutput.Text = " Invalid Room";
-                        return;
-                    }
-                    if (!MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation).Contains(roomMove)) {
-                        richTextBoxOutput.ForeColor = Color.Red;
-                        richTextBoxOutput.Text += "\nyou can't enter room " + roomMove;
+                if (!trivia) {
+                    if (textBoxCommand.Text.ToLower().StartsWith("move")) {
+                        try {
+                            roomMove = int.Parse(textBoxCommand.Text.Remove(0, 5));
+                        } catch {
+                            richTextBoxOutput.ForeColor = Color.Red;
+                            richTextBoxOutput.Text = " Invalid Room";
+                            return;
+                        }
+                        if (!MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation).Contains(roomMove)) {
+                            richTextBoxOutput.ForeColor = Color.Red;
+                            richTextBoxOutput.Text += "\nyou can't enter room " + roomMove;
+                            textBoxCommand.Clear();
+                            return;
+                        }
+                        MyGameLocation.PlayerLocation = roomMove;
                         textBoxCommand.Clear();
-                        return;
+                        MyPlayer.IncreaseTurns();
+                        refresh();
                     }
-                    MyGameLocation.PlayerLocation = roomMove;
-                    textBoxCommand.Clear();
-                    MyPlayer.IncreaseTurns();
-                    refresh();
+                } else {
+                    if (triviaNumber < 3) {
+                        switch (textBoxCommand.Text) {
+                            case "1":
+                                if (textBoxCommand.Text == questions[triviaNumber][5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber);
+                                break;
+                            case "2":
+                                if (textBoxCommand.Text == questions[triviaNumber][5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber);
+                                break;
+                            case "3":
+                                if (textBoxCommand.Text == questions[triviaNumber][5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber);
+                                break;
+                            case "4":
+                                if (textBoxCommand.Text == questions[triviaNumber][5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber);
+                                break;
+                        }
+                    } else {
+                        if (MyTrivia.NumberOfQuestionsRight >= 2) {
+                            richTextBoxTrivia.Text = "You were able to hack the firewall. But as a result you have been teleported back to the starting location.";
+                            MyGameLocation.PlayerLocation = startingLocation;
+                            trivia = false;
+                            triviaNumber = 0;
+                            MyTrivia.NumberOfQuestionsRight = 0;
+                            textBoxCommand.Clear();
+                            refresh();
+                        } else {
+                            richTextBoxTrivia.ForeColor = Color.Red;
+                            richTextBoxTrivia.Text = "You have succumb to the firewall. Game over.";
+                        }
+                    }
                 }
             }
         }
         private void refresh() {
+            if (MyGameLocation.Bat1Location == MyGameLocation.PlayerLocation || MyGameLocation.Bat2Location == MyGameLocation.PlayerLocation) {
+                richTextBoxOutput.Text = "You have been attacked by bats.\nYour location has been randomized.";
+                MyGameLocation.RandomizePlayerLocation();
+                refresh();
+            }
             canRoom1 = false;
             canRoom2 = false;
             canRoom3 = false;
@@ -346,18 +434,38 @@ namespace Team_3_Hunt_The_Wumpus
             richTextBoxWarn.Text = MyGameLocation.GiveWarning(MyCave);
             panel1.Invalidate();
 
-            if(MyGameLocation.Bat1Location == MyGameLocation.PlayerLocation || MyGameLocation.Bat2Location == MyGameLocation.PlayerLocation)
-            {
-                richTextBoxOutput.Text = "You have been attacked by bats.\nYour location has been randomized.";
-                MyGameLocation.RandomizePlayerLocation();
-                room1 = adjRooms[0];
-                room2 = adjRooms[1];
-                room3 = adjRooms[2];
-                room4 = adjRooms[3];
-                room5 = adjRooms[4];
-                room6 = adjRooms[5];
-                roomP = MyGameLocation.PlayerLocation;
-                panel1.Invalidate();
+            
+            if (MyGameLocation.Pit1Location == MyGameLocation.PlayerLocation || MyGameLocation.Pit2Location == MyGameLocation.PlayerLocation) {
+                askTriviaUI(triviaNumber);
+                trivia = true;
+            }
+        }
+        private void askTriviaUI (int number) {
+            textBoxCommand.Clear();
+            if (number < 3) {
+                questions = new string[][] { MyTrivia.newTriviaQuestion(MyCave.SelectedCave), MyTrivia.newTriviaQuestion(MyCave.SelectedCave), MyTrivia.newTriviaQuestion(MyCave.SelectedCave) };
+
+                richTextBoxTrivia.Text = "You gave encountered a firewall. Awnser at least 2 question correct in order to secsesfully bypass the firewall.\n" +
+                    questions[number][0] + ":\n" +
+                    "1: " + questions[number][1] + "\n" +
+                    "2: " + questions[number][2] + "\n" +
+                    "3: " + questions[number][3] + "\n" +
+                    "4: " + questions[number][4] + "\n" +
+                    "Enter correct number";
+            } else {
+                if (MyTrivia.NumberOfQuestionsRight >= 2) {
+                    richTextBoxTrivia.Text = "You were able to hack the firewall. But as a result you have been teleported back to the starting location.";
+                    MyGameLocation.PlayerLocation = startingLocation;
+                    trivia = false;
+                    triviaNumber = 0;
+                    MyTrivia.NumberOfQuestionsRight = 0;
+                    textBoxCommand.Clear();
+                    refresh();
+                } else {
+                    richTextBoxTrivia.ForeColor = Color.Red;
+                    richTextBoxTrivia.Text = "You have succumb to the firewall. Game over.";
+                }
+                return;
             }
         }
     }

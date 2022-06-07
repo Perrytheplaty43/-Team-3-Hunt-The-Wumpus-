@@ -11,65 +11,99 @@ namespace Team_3_Hunt_The_Wumpus
 {
     public class Trivia
     {
-        String[,] questionList;
-        private int numberOfQuestionsRight;
+        String[][] questionList;
+        public int NumberOfQuestionsRight;
         int numberOfQuestionsAsked;
-        private int[] askedQuestions = new int[5];
+        //private int[] askedQuestions = new int[6];
         int caveNumber;
+        List<int> checkDup = new List<int>();
 
         //constructor
         public Trivia(int cn)
         {
             caveNumber = cn;
-            string[] lines = System.IO.File.ReadAllLines("");
-            //String[]lines = File.ReadAllLines() //read in trivia questions from txt file
-
-            for (int i = 0; i < lines.Length; i++)
-            {
-                string[] questions = lines[i].Split(',');
-                //for (int )
-
-            }
-
+            string text = File.ReadAllText(".\\TriviaQuestions.txt");
+            questionList = text.Split('\n').Select(x => x.Split(',')).ToArray();
         }
     
 
-        public bool newTriviaRound (int cn, int totalNumberQs)
+        public string[] newTriviaQuestion (int cn)
         {
-            numberOfQuestionsAsked = totalNumberQs;
+            numberOfQuestionsAsked++;
             caveNumber = cn;
             caveNumber -= 1;
-            askQuestion(); // ask trivia questions
-            return true;
-
+            return askQuestion(); // ask trivia questions
         }
 
         public void recordAnswer(bool isRight)
         {
             // if answer is correct
-            if (isRight == true) { numberOfQuestionsRight++; }
+            if (isRight == true) { 
+                NumberOfQuestionsRight++; 
+            }
 
             if (numberOfQuestionsAsked > 0) { askQuestion(); }
 
         }
 
-        private void askQuestion ()
+        private string[] askQuestion ()
         {
             //random number generator (1-4)
             Random r = new Random();
             int indexOfRightAnswer = r.Next(4) + 1;
 
             int totalNumberQs = caveNumber * 10;
-            totalNumberQs += askedQuestions[caveNumber];
-
+            //totalNumberQs += askedQuestions[caveNumber];
+            int questionToBeAsked;
             //UI
+            do {
+                questionToBeAsked = r.Next(questionList.GetLength(0));
+            } while (checkDup.Contains(questionToBeAsked));
+            checkDup.Add(questionToBeAsked);
+            if (checkDup.Count >= questionList.GetLength(0)) {
+                checkDup = new List<int>();
+            }
 
+            switch (indexOfRightAnswer) {
+                case 1:
+                    return new string[] { 
+                        questionList[questionToBeAsked][0], 
+                        questionList[questionToBeAsked][1], 
+                        questionList[questionToBeAsked][2], 
+                        questionList[questionToBeAsked][3], 
+                        questionList[questionToBeAsked][4],
+                        indexOfRightAnswer.ToString()
+                    };
+                case 2:
+                    return new string[] {
+                        questionList[questionToBeAsked][0],
+                        questionList[questionToBeAsked][2],
+                        questionList[questionToBeAsked][1],
+                        questionList[questionToBeAsked][3],
+                        questionList[questionToBeAsked][4],
+                        indexOfRightAnswer.ToString()
+                    };
+                case 3:
+                    return new string[] {
+                        questionList[questionToBeAsked][0],
+                        questionList[questionToBeAsked][3],
+                        questionList[questionToBeAsked][2],
+                        questionList[questionToBeAsked][1],
+                        questionList[questionToBeAsked][4],
+                        indexOfRightAnswer.ToString()
+                    };
+                case 4:
+                    return new string[] {
+                        questionList[questionToBeAsked][0],
+                        questionList[questionToBeAsked][4],
+                        questionList[questionToBeAsked][2],
+                        questionList[questionToBeAsked][3],
+                        questionList[questionToBeAsked][1],
+                        indexOfRightAnswer.ToString()
+                    };
+            }
+            return new string[] { };
         }
-     
-       
-
-       
-
     }
 
 }
