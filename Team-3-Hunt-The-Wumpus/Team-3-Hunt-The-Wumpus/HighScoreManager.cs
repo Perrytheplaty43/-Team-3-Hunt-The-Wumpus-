@@ -22,9 +22,9 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
 
-        public void AddNewHighScore(string name, string cave, int score)
+        public void AddNewHighScore(string name, string cave, int score, int dateandtime)
         {
-            HighScore hs = new HighScore(name, cave, score);
+            HighScore hs = new HighScore(name, cave, score, dateandtime);
             //add the new score to list
             highscores.Add(hs);
             

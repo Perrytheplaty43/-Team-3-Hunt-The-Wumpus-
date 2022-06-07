@@ -12,12 +12,20 @@ namespace Team_3_Hunt_The_Wumpus
         public string Name { get; set; }
         public string Cave { get; set; }
         public int Score { get; set; }
+        public int NumOfTurns { get; set; }
+        public int NumOfArrowsLeft { get; set; }
+        public string DefeatedWumpus { get; set; }
+        public int DateAndTime { get; set; }
 
-        public HighScore(string n, string c, int s)
+        public HighScore(string n, string c, int s, int no, int al, string dw, int dat)
         {
             Name = n;
             Cave = c;
             Score = s;
+            NumOfTurns = no;
+            NumOfArrowsLeft = al;
+            DefeatedWumpus = dw;
+            DateAndTime = dat;
         }
     }
 }
