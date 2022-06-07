@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,55 +10,26 @@ namespace Team_3_Hunt_The_Wumpus
     public class Cave
     {
         public int SelectedCave { get; set; }
-        public int[,] connectedRooms1 = new int[30,6]{{0, 0, 2, 0, 6, 30 },
-            {0, 0, 0,8,0,1 },
-            {0,0,0,9,0,0 },
-            {28,5,0,0,0,0 },
-            {0,0,0,11,4,0 },
-            {0,1,0,0,11,0 },
-            {0,0,0,13,12,0 },
-            {2,0,15,14,0,0 },
-            {3,0,10,0,0,0 },
-            {0,0,0,16,15,9 },
-            {5,6,0,17,0,0 },
-            {0,7,0,0,0,0 },
-            {7,0,14,0,0,0 },
-            {8,0,0,20,0,13 },
-            {0,10,0,21,0,8 },
-            {10,0,0,22,21,0 },
-            {11,0,18,23,0,0 },
-            {0,0,0,0,0,17 },
-            {0,0,20,0,0,0 },
-            {14,0,0,0,25,19 },
-            {15,16,0,0,0,0 },
-            {16,0,0,0,27,0},
-            {17,0,0,29,0,0 },
-            {0,0,25,0,29,0 },
-            {0,20,0,0,0,24 },
-            {0,27,0,0,0,0 },
-            {0,22,28,0,26,0 },
-            {0,0,0,4,0,27 },
-            {23,24,0,0,0,0 },
-            {0,0,1,0,0,0 } };
-
-        public int[,] adjacentRooms = new int[30, 6] {{25, 26, 2, 7, 6, 30 }, 
+        public int[,] connectedRooms1;
+        public string[][] connectedRooms1String;
+        public int[,] adjacentRooms = new int[30, 6] {{25, 26, 2, 7, 6, 30 },
             {26, 3, 9,8,7,1 },
-            {27,28,4,9,2,26 }, 
-            {28,5,11,10,9,3 }, 
-            {29,30,6,11,4,28 }, 
-            {30,1,7,12,11,5 }, 
-            {1,2,8,13,12,6 }, 
-            {2,9,15,14,13,7 }, 
-            {3,4,10,15,8,2 }, 
+            {27,28,4,9,2,26 },
+            {28,5,11,10,9,3 },
+            {29,30,6,11,4,28 },
+            {30,1,7,12,11,5 },
+            {1,2,8,13,12,6 },
+            {2,9,15,14,13,7 },
+            {3,4,10,15,8,2 },
             {4,11,17,16,15,9 },
-            {5,6,12,17,10,4 }, 
+            {5,6,12,17,10,4 },
             {6,7,13,18,17,11 },
             {7,8,14,19,18,12 },
             {8,15,21,20,19,13 },
             {9,10,16,21,14,8 },
             {10,17,23,22,21,15 },
             {11,12,18,23,16,10 },
-            {12,13,19,24,23,17 }, 
+            {12,13,19,24,23,17 },
             {13,14,20,25,24,18 },
             {14,21,27,26,25,19 },
             {15,16,22,27,20,14 },
@@ -102,7 +74,7 @@ namespace Team_3_Hunt_The_Wumpus
             {23,0,30,0,28,0 },
             {0,0,0,0,0,29 } };
 
-        public int[,] connectedRooms3 = new int[30, 6] {{0, 26, 0, 0, 0, 30 }, 
+        public int[,] connectedRooms3 = new int[30, 6] {{0, 26, 0, 0, 0, 30 },
             {0, 0, 9,0,0,0 },
             {0,28,0,9,0,26 },
             {0,5,0,10,0,0 },
@@ -133,7 +105,7 @@ namespace Team_3_Hunt_The_Wumpus
             {23,24,30,0,0,0 },
             {0,0,1,0,5,29 } };
 
-        public int[,] connectedRooms4 = new int[30, 6] {{25, 0, 2, 0, 0, 30 }, 
+        public int[,] connectedRooms4 = new int[30, 6] {{25, 0, 2, 0, 0, 30 },
             {0, 0, 9,8,0,1 },
             {27,0,0,0,0,0 },
             {0,0,0,10,0,0},
@@ -194,7 +166,20 @@ namespace Team_3_Hunt_The_Wumpus
             {0,0,30,0,28,22 },
             {0,0,0,0,5,29 } };
 
+        public Cave() {
+            string text = File.ReadAllText(".\\cave1.txt");
+            connectedRooms1String = text.Split('\n').Select(x => x.Split(',')).ToArray();
 
+            for (int i = 0; i < connectedRooms1String.GetLength(0); i++)
+            {
+                for (int y = 0; y < connectedRooms1String.GetLength(1); y++)
+                {
+                    connectedRooms1[i, y] = int.Parse(connectedRooms1String[i][y]);
+                }
+            }
+            var a = connectedRooms1;
+            Console.WriteLine();
+        }
         public int[] GetAdjacentRooms(int room)
         {
             int[] adjacent = new int[6];
