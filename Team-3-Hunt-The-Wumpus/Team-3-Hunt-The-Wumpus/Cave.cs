@@ -10,7 +10,7 @@ namespace Team_3_Hunt_The_Wumpus
     public class Cave
     {
         public int SelectedCave { get; set; }
-        public int[,] connectedRooms1;
+        public int[,] connectedRooms1 = new int[30, 6];
         public string[][] connectedRooms1String;
         public int[,] adjacentRooms = new int[30, 6] {{25, 26, 2, 7, 6, 30 },
             {26, 3, 9,8,7,1 },
@@ -167,18 +167,16 @@ namespace Team_3_Hunt_The_Wumpus
             {0,0,0,0,5,29 } };
 
         public Cave() {
-            string text = File.ReadAllText(".\\cave1.txt");
-            connectedRooms1String = text.Split('\n').Select(x => x.Split(',')).ToArray();
+            string text1 = File.ReadAllText(".\\cave1.txt");
+            connectedRooms1String = text1.Split('\n').Select(x => x.Replace("\r", "").Split(',')).ToArray();
 
             for (int i = 0; i < connectedRooms1String.GetLength(0); i++)
             {
-                for (int y = 0; y < connectedRooms1String.GetLength(1); y++)
+                for (int y = 0; y < connectedRooms1String[i].Length; y++)
                 {
                     connectedRooms1[i, y] = int.Parse(connectedRooms1String[i][y]);
                 }
             }
-            var a = connectedRooms1;
-            Console.WriteLine();
         }
         public int[] GetAdjacentRooms(int room)
         {
