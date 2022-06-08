@@ -16,13 +16,15 @@ namespace Team_3_Hunt_The_Wumpus
         {
             try
             {
-                OpenFile();
+                openFile();
             }
-            catch { }
+            catch {
+            
+            }
         }
 
 
-        public void AddNewHighScore(string name, string cave, int score, int numofturns, int numofarrowsleft, bool defeatedwumpus, string dateandtime)
+        public void AddNewHighScore(string name, int cave, int score, int numofturns, int numofarrowsleft, bool defeatedwumpus, string dateandtime)
         {
             HighScore hs = new HighScore(name, cave, score, numofturns, numofarrowsleft, defeatedwumpus, dateandtime);
             //add the new score to list
@@ -37,24 +39,37 @@ namespace Team_3_Hunt_The_Wumpus
             return highscores;
         }
 
-        private void OpenFile()
+        private void openFile()
         {
-            using (StreamReader sr = new StreamReader("studentDataFile"))
+            using (StreamReader sr = new StreamReader(".\\studentDataFile.txt"))
             {
                 while (!sr.EndOfStream)
                 {
-                    string input = sr.ReadLine();
-                    string[] data = input.Split(",");
-                    string name = data[0];
-                    string cave = data[1];
-                    int score = int.Parse(data[2]); 
+                    string text = File.ReadAllText(".\\TriviaQuestions.txt");
+                    string[][] data = text.Split('\n').Select(x => x.Split(',')).ToArray();
 
-                    HighScore hs  = new HighScore(name, cave, score);
+                    for (int i = 0; i < data.Length; i++) {
+                        string name = data[i][0];
+                        int cave = int.Parse(data[i][1]);
+                        int score = int.Parse(data[i][2]);
+                        int numofturns = int.Parse(data[i][3]);
+                        int numofarrowsleft = int.Parse(data[i][4]);
+                        bool defeatedwumpus = bool.Parse(data[i][5]);
+                        string dateandtime = data[i][6];
+                        AddNewHighScore(name, cave, score, numofturns, numofarrowsleft, defeatedwumpus, dateandtime);
+                    }
                 }
             }
         }
 
         //add write to file
+        public async Task SaveScores() {
+            var textToSave = "";
+            for (int i = 0; i < highscores.Count; i++) {
+                textToSave += $"{highscores[i].Name},{highscores[i].Cave},{highscores[i].Score},{highscores[i].NumOfTurns},{highscores[i].NumOfArrowsLeft},{highscores[i].DefeatedWumpus},{highscores[i].DateAndTime}\n";
+            }
+            await File.WriteAllTextAsync(".\\studentDataFile.txt", textToSave);
+        }
 
         //create a sort method to sort by scores
     }
