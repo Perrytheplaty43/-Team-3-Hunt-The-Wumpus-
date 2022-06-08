@@ -60,7 +60,7 @@ namespace Team_3_Hunt_The_Wumpus
             MyCave = new Cave(randomNumber);
             MyTrivia = new Trivia(MyCave.SelectedCave);
 
-            MyGameLocation = new GameLocation(MyCave);
+            MyGameLocation = new GameLocation();
 
             startingLocation = MyGameLocation.PlayerLocation;
 
