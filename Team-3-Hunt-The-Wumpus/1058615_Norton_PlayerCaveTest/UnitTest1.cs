@@ -1,17 +1,20 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Team_3_Hunt_The_Wumpus;
 using System.Collections.Generic;
+using System;
 
 namespace _1058615_Norton_PlayerCaveTest
 {
     [TestClass]
     public class UnitTest1
     {
-        Cave cave = new();
+        Random random = new Random();
+        Cave cave;
         Player player = new();
         [TestMethod]
         public void AdjacentRoomsCorrect()
-        { 
+        {
+            cave = new(random.Next(1, 4));
             int[] expected = new int[6] { 25, 26, 2, 7, 6, 30 };
             var adjacentRooms = cave.GetAdjacentRooms(1);
 
@@ -28,6 +31,7 @@ namespace _1058615_Norton_PlayerCaveTest
         [TestMethod]
         public void AdjacentRoomsIncorrect()
         {
+            cave = new(random.Next(1, 4));
             int[] expected = new int[6] { 25, 26, 2, 7, 6, 30 };
             var adjacentRooms = cave.GetAdjacentRooms(1);
 
@@ -44,6 +48,7 @@ namespace _1058615_Norton_PlayerCaveTest
         [TestMethod]
         public void ConnectedRoomsCorrect()
         {
+            cave = new(random.Next(1, 4));
             cave.SelectedCave = 1;
             List<int> expected = new List<int>();
             expected.Add(1);
@@ -62,6 +67,7 @@ namespace _1058615_Norton_PlayerCaveTest
         [TestMethod]
         public void ConnectedRoomsIncorrect()
         {
+            cave = new(random.Next(1, 4));
             cave.SelectedCave = 1;
             List<int> expected = new List<int>();
             expected.Add(1);
