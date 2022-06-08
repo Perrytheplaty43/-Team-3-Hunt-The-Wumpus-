@@ -40,6 +40,7 @@ namespace Team_3_Hunt_The_Wumpus
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.richTextBoxTrivia = new System.Windows.Forms.RichTextBox();
+            this.labelArrows = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -140,11 +141,25 @@ namespace Team_3_Hunt_The_Wumpus
             this.richTextBoxTrivia.TabIndex = 5;
             this.richTextBoxTrivia.Text = "";
             // 
+            // labelArrows
+            // 
+            this.labelArrows.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelArrows.AutoSize = true;
+            this.labelArrows.BackColor = System.Drawing.Color.Transparent;
+            this.labelArrows.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelArrows.ForeColor = System.Drawing.Color.Lime;
+            this.labelArrows.Location = new System.Drawing.Point(-73, 96);
+            this.labelArrows.Name = "labelArrows";
+            this.labelArrows.Size = new System.Drawing.Size(175, 50);
+            this.labelArrows.TabIndex = 7;
+            this.labelArrows.Text = "Arrows: 3";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 728);
+            this.Controls.Add(this.labelArrows);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.richTextBoxTrivia);
             this.Controls.Add(this.label2);
@@ -171,6 +186,7 @@ namespace Team_3_Hunt_The_Wumpus
         private Label label2;
         private Label label3;
         private RichTextBox richTextBoxTrivia;
+        private Label labelArrows;
     }
 }
 

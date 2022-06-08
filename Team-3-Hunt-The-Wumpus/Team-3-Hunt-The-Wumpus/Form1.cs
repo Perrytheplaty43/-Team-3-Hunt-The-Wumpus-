@@ -17,6 +17,7 @@ namespace Team_3_Hunt_The_Wumpus {
         public Trivia MyTrivia;
         public PrivateFontCollection pfc = new PrivateFontCollection();
         public Player MyPlayer = new Player();
+        public Wumpus MyWumpus = new Wumpus();
         int startingLocation;
         bool trivia = false;
         bool triviaPit = false;
@@ -49,6 +50,7 @@ namespace Team_3_Hunt_The_Wumpus {
             richTextBoxWarn.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
             label3.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
             richTextBoxTrivia.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
+            labelArrows.Font = new Font(pfc.Families[0], 25, FontStyle.Regular);
         }
         int[] adjRooms;
         List<int> connectedRoom;
@@ -59,6 +61,8 @@ namespace Team_3_Hunt_The_Wumpus {
             MyTrivia = new Trivia(MyCave.SelectedCave);
 
             MyGameLocation = new GameLocation();
+
+            MyPlayer.Arrows = 3;
 
             startingLocation = MyGameLocation.PlayerLocation;
 
@@ -280,6 +284,7 @@ namespace Team_3_Hunt_The_Wumpus {
 
         private void textBoxCommand_KeyDown(object sender, KeyEventArgs e) {
             int roomMove;
+            int roomShoot;
             if (e.KeyCode == Keys.Enter) {
                 if (!trivia) {
                     if (textBoxCommand.Text.ToLower().StartsWith("move")) {
@@ -297,6 +302,37 @@ namespace Team_3_Hunt_The_Wumpus {
                             return;
                         }
                         MyGameLocation.PlayerLocation = roomMove;
+                        textBoxCommand.Clear();
+                        MyPlayer.IncreaseTurns();
+                        refresh();
+                    } else if (textBoxCommand.Text.ToLower().StartsWith("shoot")) {
+                        try {
+                            roomShoot = int.Parse(textBoxCommand.Text.Remove(0, 6));
+                        } catch {
+                            richTextBoxOutput.ForeColor = Color.Red;
+                            richTextBoxOutput.Text = " Invalid Room";
+                            return;
+                        }
+                        if (!MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation).Contains(roomShoot)) {
+                            richTextBoxOutput.ForeColor = Color.Red;
+                            richTextBoxOutput.Text += "\nyou can't shoot into room " + roomShoot;
+                            textBoxCommand.Clear();
+                            return;
+                        }
+                        MyPlayer.DecreaseArrows();
+                        labelArrows.Text = $"Arrows: {MyPlayer.Arrows}";
+                        if (MyGameLocation.WumpusLocation == roomShoot) {
+                            //won
+                        } else {
+                            MyWumpus.WakeWumpus(MyCave);
+                            richTextBoxOutput.ForeColor = Color.Red;
+                            richTextBoxOutput.Text = "You missed! The Wumpus has awakend!";
+                            textBoxCommand.Clear();
+                            if (MyPlayer.Arrows == 0) {
+                                richTextBoxOutput.Text = "You have run out of arrows! The wumpus has take this opportunity to eat you!.";
+                                //lose
+                            }
+                        }
                         textBoxCommand.Clear();
                         MyPlayer.IncreaseTurns();
                         refresh();
