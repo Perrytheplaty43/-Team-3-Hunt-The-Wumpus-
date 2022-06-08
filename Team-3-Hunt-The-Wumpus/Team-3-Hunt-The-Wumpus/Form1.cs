@@ -55,12 +55,9 @@ namespace Team_3_Hunt_The_Wumpus
         List<int> connectedRoom;
         private void Form1_Load(object sender, EventArgs e)
         {
-            MyCave = new Cave();
-
             Random random = new Random();
             int randomNumber = random.Next(0, 4);
-            MyCave.SelectedCave = randomNumber;
-
+            MyCave = new Cave(randomNumber);
             MyTrivia = new Trivia(MyCave.SelectedCave);
 
             MyGameLocation = new GameLocation();

@@ -18,8 +18,6 @@ namespace Team_3_Hunt_The_Wumpus
         public int Bat2Location { get; set; }
         public bool WinOrLose { get; set; }
 
-        //Random rndRoom = new Random();
-
         //constructor
         public GameLocation()
         {
@@ -30,8 +28,9 @@ namespace Team_3_Hunt_The_Wumpus
         // randomizes player location 
         public void RandomizePlayerLocation()
         {
-            int room;
             Random rndRoom = new Random();
+            int room;
+            
             room = rndRoom.Next(31);
             PlayerLocation = room;
         }
