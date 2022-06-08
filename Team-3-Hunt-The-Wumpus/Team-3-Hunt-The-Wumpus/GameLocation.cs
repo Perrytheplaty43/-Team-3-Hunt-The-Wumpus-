@@ -66,8 +66,14 @@ namespace Team_3_Hunt_The_Wumpus
             Random rndRoom = new Random();
             int room1, room2;
 
-            room1 = rndRoom.Next(30) + 1;
-            room2 = rndRoom.Next(30) + 1;
+            do {
+                room1 = rndRoom.Next(30) + 1;
+            } while (room1 == Bat1Location || room1 == Bat2Location);
+
+            do {
+                room2 = rndRoom.Next(30) + 1;
+            } while (room2 == Bat1Location || room2 == Bat2Location);
+
             Pit1Location = room1;
             Pit2Location = room2;
         }
@@ -78,8 +84,14 @@ namespace Team_3_Hunt_The_Wumpus
             Random rndRoom = new Random();
             int room1, room2;
 
-            room1 = rndRoom.Next(30) + 1;
-            room2 = rndRoom.Next(30) + 1;
+            do {
+                room1 = rndRoom.Next(30) + 1;
+            } while (room1 == Pit1Location || room1 == Pit2Location);
+
+            do {
+                room2 = rndRoom.Next(30) + 1;
+            } while (room2 == Pit1Location || room2 == Pit2Location);
+
             Bat1Location = room1;
             Bat2Location = room2;
         }
@@ -87,23 +99,24 @@ namespace Team_3_Hunt_The_Wumpus
         // returns a room-specific warning (probably every time player moves to a new room)
         public string GiveWarning(Cave cave)
         {
+            var warnings = "";
             // different outcome based on which room player is near (can give multiple warnings if necessary)
             if (cave.GetAdjacentRooms(PlayerLocation).Contains(WumpusLocation))
             {
                 // wumpus
-                return "I smell a Wumpus!";
+                warnings += "I smell a Wumpus!\n";
             }
             if (cave.GetAdjacentRooms(PlayerLocation).Contains(Bat1Location) || cave.GetAdjacentRooms(PlayerLocation).Contains(Bat2Location))
             {
                 // pits
-                return "Bats nearby!";
+                warnings += "Bats nearby!\n";
             }
             if (cave.GetAdjacentRooms(PlayerLocation).Contains(Pit1Location) || cave.GetAdjacentRooms(PlayerLocation).Contains(Pit2Location))
             {
                 // bats
-                return "I feel a draft!";
+                warnings += "I feel a draft!\n";
             }
-            return "";
+            return warnings;
         }
 
         // shoots an arrow to a specific room

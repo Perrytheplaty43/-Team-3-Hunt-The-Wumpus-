@@ -10,10 +10,8 @@ using System.Reflection;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
 
-namespace Team_3_Hunt_The_Wumpus
-{
-    public partial class Form1 : Form
-    {
+namespace Team_3_Hunt_The_Wumpus {
+    public partial class Form1 : Form {
         public Cave MyCave;
         public GameLocation MyGameLocation;
         public Trivia MyTrivia;
@@ -21,6 +19,7 @@ namespace Team_3_Hunt_The_Wumpus
         public Player MyPlayer = new Player();
         int startingLocation;
         bool trivia = false;
+        bool triviaPit = false;
         public Form1() {
             [DllImport("gdi32.dll")]
             static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
@@ -43,7 +42,7 @@ namespace Team_3_Hunt_The_Wumpus
             label1.Font = new Font(pfc.Families[0], 72, FontStyle.Regular);
             WindowState = FormWindowState.Maximized;
             BackgroundImage = Properties.Resources.background;
-            
+
             textBoxCommand.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
             richTextBoxOutput.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
             label2.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
@@ -53,10 +52,9 @@ namespace Team_3_Hunt_The_Wumpus
         }
         int[] adjRooms;
         List<int> connectedRoom;
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e) {
             Random random = new Random();
-            int randomNumber = random.Next(0, 4);
+            int randomNumber = random.Next(1, 4);
             MyCave = new Cave(randomNumber);
             MyTrivia = new Trivia(MyCave.SelectedCave);
 
@@ -68,33 +66,20 @@ namespace Team_3_Hunt_The_Wumpus
             adjRooms = MyCave.GetAdjacentRooms(MyGameLocation.PlayerLocation);
             connectedRoom = MyCave.GetConnectedRooms(MyGameLocation.PlayerLocation);
 
-            for(int i = 0; i <= adjRooms.Length - 1; i++) 
-            { 
-                for (int y = 0; y <= connectedRoom.Count - 1; y++)
-                {
-                    if(adjRooms[i] == connectedRoom[y])
-                    {
-                        if (i == 0)
-                        {
+            for (int i = 0; i <= adjRooms.Length - 1; i++) {
+                for (int y = 0; y <= connectedRoom.Count - 1; y++) {
+                    if (adjRooms[i] == connectedRoom[y]) {
+                        if (i == 0) {
                             canRoom1 = true;
-                        } else if (i == 1)
-                        {
+                        } else if (i == 1) {
                             canRoom2 = true;
-                        }
-                        else if (i == 2)
-                        {
+                        } else if (i == 2) {
                             canRoom3 = true;
-                        }
-                        else if (i == 3)
-                        {
+                        } else if (i == 3) {
                             canRoom4 = true;
-                        }
-                        else if (i == 4)
-                        {
+                        } else if (i == 4) {
                             canRoom5 = true;
-                        }
-                        else if (i == 5)
-                        {
+                        } else if (i == 5) {
                             canRoom6 = true;
                         }
                     }
@@ -111,8 +96,7 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         public Task TypeWriterEffect(string txt, Label lbl, int delay) {
-            return Task.Run(() =>
-            {
+            return Task.Run(() => {
                 for (int i = 0; i <= txt.Length; i++) {
                     lbl.Invoke((MethodInvoker)delegate {
                         lbl.Text = txt.Substring(0, i);
@@ -136,7 +120,7 @@ namespace Team_3_Hunt_The_Wumpus
         int room5;
         int room6;
 
-        string[][] questions;
+        string[] questions;
         int triviaNumber = 0;
         private void panel1_Paint(object sender, PaintEventArgs e) {
             var graphics = e.Graphics;
@@ -317,11 +301,11 @@ namespace Team_3_Hunt_The_Wumpus
                         MyPlayer.IncreaseTurns();
                         refresh();
                     }
-                } else {
+                } else if (triviaPit) {
                     if (triviaNumber < 3) {
                         switch (textBoxCommand.Text) {
                             case "1":
-                                if (textBoxCommand.Text == questions[triviaNumber][5]) {
+                                if (textBoxCommand.Text == questions[5]) {
                                     MyTrivia.recordAnswer(true);
                                     richTextBoxOutput.ForeColor = Color.LimeGreen;
                                     richTextBoxOutput.Text = "Correct!";
@@ -330,10 +314,10 @@ namespace Team_3_Hunt_The_Wumpus
                                     richTextBoxOutput.Text = "Wrong!";
                                 }
                                 triviaNumber++;
-                                askTriviaUI(triviaNumber);
+                                askTriviaUI(triviaNumber, 3, 2);
                                 break;
                             case "2":
-                                if (textBoxCommand.Text == questions[triviaNumber][5]) {
+                                if (textBoxCommand.Text == questions[5]) {
                                     MyTrivia.recordAnswer(true);
                                     richTextBoxOutput.ForeColor = Color.LimeGreen;
                                     richTextBoxOutput.Text = "Correct!";
@@ -342,10 +326,10 @@ namespace Team_3_Hunt_The_Wumpus
                                     richTextBoxOutput.Text = "Wrong!";
                                 }
                                 triviaNumber++;
-                                askTriviaUI(triviaNumber);
+                                askTriviaUI(triviaNumber, 3, 2);
                                 break;
                             case "3":
-                                if (textBoxCommand.Text == questions[triviaNumber][5]) {
+                                if (textBoxCommand.Text == questions[5]) {
                                     MyTrivia.recordAnswer(true);
                                     richTextBoxOutput.ForeColor = Color.LimeGreen;
                                     richTextBoxOutput.Text = "Correct!";
@@ -354,10 +338,10 @@ namespace Team_3_Hunt_The_Wumpus
                                     richTextBoxOutput.Text = "Wrong!";
                                 }
                                 triviaNumber++;
-                                askTriviaUI(triviaNumber);
+                                askTriviaUI(triviaNumber, 3, 2);
                                 break;
                             case "4":
-                                if (textBoxCommand.Text == questions[triviaNumber][5]) {
+                                if (textBoxCommand.Text == questions[5]) {
                                     MyTrivia.recordAnswer(true);
                                     richTextBoxOutput.ForeColor = Color.LimeGreen;
                                     richTextBoxOutput.Text = "Correct!";
@@ -366,7 +350,7 @@ namespace Team_3_Hunt_The_Wumpus
                                     richTextBoxOutput.Text = "Wrong!";
                                 }
                                 triviaNumber++;
-                                askTriviaUI(triviaNumber);
+                                askTriviaUI(triviaNumber, 3, 2);
                                 break;
                         }
                     } else {
@@ -383,6 +367,70 @@ namespace Team_3_Hunt_The_Wumpus
                             richTextBoxTrivia.Text = "You have succumb to the firewall. Game over.";
                         }
                     }
+                } else if (triviaNumber < 5) {
+                    switch (textBoxCommand.Text) {
+                        case "1":
+                            if (textBoxCommand.Text == questions[5]) {
+                                MyTrivia.recordAnswer(true);
+                                richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                richTextBoxOutput.Text = "Correct!";
+                            } else {
+                                richTextBoxOutput.ForeColor = Color.Red;
+                                richTextBoxOutput.Text = "Wrong!";
+                            }
+                            triviaNumber++;
+                            askTriviaUI(triviaNumber, 5, 3);
+                            break;
+                        case "2":
+                            if (textBoxCommand.Text == questions[5]) {
+                                MyTrivia.recordAnswer(true);
+                                richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                richTextBoxOutput.Text = "Correct!";
+                            } else {
+                                richTextBoxOutput.ForeColor = Color.Red;
+                                richTextBoxOutput.Text = "Wrong!";
+                            }
+                            triviaNumber++;
+                            askTriviaUI(triviaNumber, 5, 3);
+                            break;
+                        case "3":
+                            if (textBoxCommand.Text == questions[5]) {
+                                MyTrivia.recordAnswer(true);
+                                richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                richTextBoxOutput.Text = "Correct!";
+                            } else {
+                                richTextBoxOutput.ForeColor = Color.Red;
+                                richTextBoxOutput.Text = "Wrong!";
+                            }
+                            triviaNumber++;
+                            askTriviaUI(triviaNumber, 5, 3);
+                            break;
+                        case "4":
+                            if (textBoxCommand.Text == questions[5]) {
+                                MyTrivia.recordAnswer(true);
+                                richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                richTextBoxOutput.Text = "Correct!";
+                            } else {
+                                richTextBoxOutput.ForeColor = Color.Red;
+                                richTextBoxOutput.Text = "Wrong!";
+                            }
+                            triviaNumber++;
+                            askTriviaUI(triviaNumber, 5, 3);
+                            break;
+                    }
+                } else {
+                    if (MyTrivia.NumberOfQuestionsRight >= 3) {
+                        richTextBoxTrivia.Text = "You were able to bypass the Wumpus. But as a result the Wumpus has moved.";
+                        MyGameLocation.RunAwayWumpusLocation(MyCave);
+                        trivia = false;
+                        triviaNumber = 0;
+                        MyTrivia.NumberOfQuestionsRight = 0;
+                        textBoxCommand.Clear();
+                        refresh();
+                    } else {
+                        richTextBoxTrivia.ForeColor = Color.Red;
+                        richTextBoxTrivia.Text = "You have succumb to the Wumpus. Game over.";
+                    }
                 }
             }
         }
@@ -390,6 +438,7 @@ namespace Team_3_Hunt_The_Wumpus
             if (MyGameLocation.Bat1Location == MyGameLocation.PlayerLocation || MyGameLocation.Bat2Location == MyGameLocation.PlayerLocation) {
                 richTextBoxOutput.Text = "You have been attacked by bats.\nYour location has been randomized.";
                 MyGameLocation.RandomizePlayerLocation();
+                MyGameLocation.RandomizeBatsLocation();
                 refresh();
             }
             canRoom1 = false;
@@ -431,29 +480,48 @@ namespace Team_3_Hunt_The_Wumpus
             richTextBoxWarn.Text = MyGameLocation.GiveWarning(MyCave);
             panel1.Invalidate();
 
-            
+
             if (MyGameLocation.Pit1Location == MyGameLocation.PlayerLocation || MyGameLocation.Pit2Location == MyGameLocation.PlayerLocation) {
-                askTriviaUI(triviaNumber);
+                askTriviaUI(triviaNumber, 3, 2);
+                trivia = true;
+                triviaPit = true;
+            }
+            if (MyGameLocation.PlayerLocation == MyGameLocation.WumpusLocation) {
+                askTriviaUI(triviaNumber, 5, 3);
                 trivia = true;
             }
         }
-        private void askTriviaUI (int number) {
+        private void askTriviaUI(int number, int rounds, int correct) {
             textBoxCommand.Clear();
-            if (number < 3) {
-                questions = new string[][] { MyTrivia.newTriviaQuestion(MyCave.SelectedCave), MyTrivia.newTriviaQuestion(MyCave.SelectedCave), MyTrivia.newTriviaQuestion(MyCave.SelectedCave) };
+            if (number < rounds) {
+                questions = MyTrivia.newTriviaQuestion(MyCave.SelectedCave);
 
-                richTextBoxTrivia.Text = "You gave encountered a firewall. Awnser at least 2 question correct in order to secsesfully bypass the firewall.\n" +
-                    questions[number][0] + ":\n" +
-                    "1: " + questions[number][1] + "\n" +
-                    "2: " + questions[number][2] + "\n" +
-                    "3: " + questions[number][3] + "\n" +
-                    "4: " + questions[number][4] + "\n" +
-                    "Enter correct number";
-            } else {
-                if (MyTrivia.NumberOfQuestionsRight >= 2) {
+                switch (rounds) {
+                    case 3:
+                        richTextBoxTrivia.Text = "You gave encountered a firewall. Awnser at least 2 questions correct in order to secsesfully bypass the firewall.\n" +
+                            questions[0] + ":\n" +
+                            "1: " + questions[1] + "\n" +
+                            "2: " + questions[2] + "\n" +
+                            "3: " + questions[3] + "\n" +
+                            "4: " + questions[4] + "\n" +
+                            "Enter correct number";
+                        break;
+                    case 5:
+                        richTextBoxTrivia.Text = "You gave encountered a Wumpus. Awnser at least 3 questions correct in order to secsesfully bypass the Wumpus.\n" +
+                            questions[0] + ":\n" +
+                            "1: " + questions[1] + "\n" +
+                            "2: " + questions[2] + "\n" +
+                            "3: " + questions[3] + "\n" +
+                            "4: " + questions[4] + "\n" +
+                            "Enter correct number";
+                        break;
+                }
+            } else if (rounds == 3) {
+                if (MyTrivia.NumberOfQuestionsRight >= correct) {
                     richTextBoxTrivia.Text = "You were able to hack the firewall. But as a result you have been teleported back to the starting location.";
                     MyGameLocation.PlayerLocation = startingLocation;
                     trivia = false;
+                    triviaPit = false;
                     triviaNumber = 0;
                     MyTrivia.NumberOfQuestionsRight = 0;
                     textBoxCommand.Clear();
@@ -463,6 +531,24 @@ namespace Team_3_Hunt_The_Wumpus
                     richTextBoxTrivia.Text = "You have succumb to the firewall. Game over.";
                 }
                 return;
+            } else {
+                if (MyTrivia.NumberOfQuestionsRight >= correct) {
+                    richTextBoxTrivia.Text = "You were able to bypass the Wumpus. But as a result the Wumpus has moved.";
+
+                    Random rand = new Random();
+                    int moves = rand.Next(2, 4);
+                    for (int i = 0; i <= moves; i++) {
+                        MyGameLocation.RunAwayWumpusLocation(MyCave);
+                    }
+                    trivia = false;
+                    triviaNumber = 0;
+                    MyTrivia.NumberOfQuestionsRight = 0;
+                    textBoxCommand.Clear();
+                    refresh();
+                } else {
+                    richTextBoxTrivia.ForeColor = Color.Red;
+                    richTextBoxTrivia.Text = "You have succumb to the Wumpus. Game over.";
+                }
             }
         }
     }

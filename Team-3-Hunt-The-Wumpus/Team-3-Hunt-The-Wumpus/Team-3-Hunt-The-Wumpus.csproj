@@ -38,6 +38,9 @@
     <None Update="cave5.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="caveAdj.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TriviaQuestions.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
