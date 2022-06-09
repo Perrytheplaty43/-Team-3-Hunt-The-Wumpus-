@@ -40,6 +40,9 @@ namespace Team_3_Hunt_The_Wumpus
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.richTextBoxTrivia = new System.Windows.Forms.RichTextBox();
+            this.labelArrows = new System.Windows.Forms.Label();
+            this.labelCoins = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -86,6 +89,7 @@ namespace Team_3_Hunt_The_Wumpus
             this.richTextBoxOutput.BackColor = System.Drawing.Color.Black;
             this.richTextBoxOutput.Location = new System.Drawing.Point(181, 576);
             this.richTextBoxOutput.Name = "richTextBoxOutput";
+            this.richTextBoxOutput.ReadOnly = true;
             this.richTextBoxOutput.Size = new System.Drawing.Size(960, 96);
             this.richTextBoxOutput.TabIndex = 2;
             this.richTextBoxOutput.Text = "";
@@ -140,11 +144,53 @@ namespace Team_3_Hunt_The_Wumpus
             this.richTextBoxTrivia.TabIndex = 5;
             this.richTextBoxTrivia.Text = "";
             // 
+            // labelArrows
+            // 
+            this.labelArrows.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelArrows.AutoSize = true;
+            this.labelArrows.BackColor = System.Drawing.Color.Transparent;
+            this.labelArrows.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelArrows.ForeColor = System.Drawing.Color.Lime;
+            this.labelArrows.Location = new System.Drawing.Point(-73, 96);
+            this.labelArrows.Name = "labelArrows";
+            this.labelArrows.Size = new System.Drawing.Size(175, 50);
+            this.labelArrows.TabIndex = 7;
+            this.labelArrows.Text = "Arrows: 3";
+            // 
+            // labelCoins
+            // 
+            this.labelCoins.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelCoins.AutoSize = true;
+            this.labelCoins.BackColor = System.Drawing.Color.Transparent;
+            this.labelCoins.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelCoins.ForeColor = System.Drawing.Color.Lime;
+            this.labelCoins.Location = new System.Drawing.Point(-49, 46);
+            this.labelCoins.Name = "labelCoins";
+            this.labelCoins.Size = new System.Drawing.Size(151, 50);
+            this.labelCoins.TabIndex = 8;
+            this.labelCoins.Text = "Coins: 0";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Black;
+            this.button1.ForeColor = System.Drawing.Color.LimeGreen;
+            this.button1.Location = new System.Drawing.Point(1277, 701);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(95, 48);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Help";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 728);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.labelCoins);
+            this.Controls.Add(this.labelArrows);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.richTextBoxTrivia);
             this.Controls.Add(this.label2);
@@ -163,14 +209,17 @@ namespace Team_3_Hunt_The_Wumpus
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxCommand;
-        private System.Windows.Forms.Panel panel1;
-        private RichTextBox richTextBoxOutput;
-        private RichTextBox richTextBoxWarn;
-        private Label label2;
-        private Label label3;
-        private RichTextBox richTextBoxTrivia;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox textBoxCommand;
+        public System.Windows.Forms.Panel panel1;
+        public RichTextBox richTextBoxOutput;
+        public RichTextBox richTextBoxWarn;
+        public Label label2;
+        public Label label3;
+        public RichTextBox richTextBoxTrivia;
+        public Label labelArrows;
+        public Label labelCoins;
+        public Button button1;
     }
 }
 

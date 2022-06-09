@@ -15,9 +15,9 @@ namespace Team_3_Hunt_The_Wumpus
         public int NumOfTurns { get; set; }
         public int NumOfArrowsLeft { get; set; }
         public bool DefeatedWumpus { get; set; }
-        public string DateAndTime { get; set; }
+        public int Coins { get; set; }
 
-        public HighScore(string n, int c, int s, int no, int al, bool dw, string dat)
+        public HighScore(string n, int c, int s, int no, int al, bool dw, int coins)
         {
             Name = n;
             Cave = c;
@@ -25,7 +25,7 @@ namespace Team_3_Hunt_The_Wumpus
             NumOfTurns = no;
             NumOfArrowsLeft = al;
             DefeatedWumpus = dw;
-            DateAndTime = dat;
+            Coins = coins;
         }
     }
 }

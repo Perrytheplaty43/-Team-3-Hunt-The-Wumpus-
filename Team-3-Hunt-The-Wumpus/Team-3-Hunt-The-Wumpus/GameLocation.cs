@@ -137,8 +137,36 @@ namespace Team_3_Hunt_The_Wumpus
         }
 
         // returns a random piece of trivia depending on questions asked (array of answers?)
-        public string GetHint()
+        public string GetHint(Cave cave, Trivia trivia)
         {
+            Random rand = new Random();
+            int hintNum = rand.Next(1, 6);
+            switch (hintNum) {
+                case 1:
+                    if (hintNum % 2 > 0) return $"Location of one of the bats is room {Bat1Location}";
+                    else return $"Location of one of the bats is room {Bat2Location}";
+                case 2:
+                    if (hintNum % 2 > 0) return $"Location of one of the pits is room {Pit1Location}";
+                    else return $"Location of one of the pits is room {Pit2Location}";
+                case 3:
+                    var playerAdjRooms = cave.GetAdjacentRooms(PlayerLocation);
+                    for (int i = 0; i < playerAdjRooms.Length; i++) {
+                        var secondAdjRooms = cave.GetAdjacentRooms(playerAdjRooms[i]);
+                        for (int y = 0; y < secondAdjRooms.Length; y++) {
+                            if (secondAdjRooms[y] == WumpusLocation) {
+                                return "The Wumpus is within 2 rooms of you.";
+                            }
+                        }
+                    }
+                    return "The Wumpus is not within 2 rooms of you.";
+                case 4:
+                    return $"The Wumpus is currently in room {WumpusLocation}";
+                case 5:
+                    return $"You are currently in room {PlayerLocation}";
+                case 6:
+                    var usedTrivia = trivia.getOldAnswer();
+                    return $"The anwser to \"{usedTrivia[0]}\" is \"{usedTrivia[1]}\".";
+            }
             return "";
         }
 

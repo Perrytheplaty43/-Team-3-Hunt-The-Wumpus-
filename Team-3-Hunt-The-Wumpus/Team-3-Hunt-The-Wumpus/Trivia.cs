@@ -45,6 +45,22 @@ namespace Team_3_Hunt_The_Wumpus
             if (numberOfQuestionsAsked > 0) { askQuestion(); }
 
         }
+        public string[] getOldAnswer() {
+            Random rand = new Random();
+            int randomAnswer = rand.Next(0, checkDup.Count() - 1);
+            int awnserIndex = checkDup[randomAnswer];
+            return new string[] { questionList[awnserIndex][0], questionList[awnserIndex][1] };
+        }
+
+        public string getRandomTrivia() {
+            string text = File.ReadAllText(".\\TriviaHints.txt");
+            var hints = text.Split(',').ToArray();
+
+            Random rand = new Random();
+            int randomTrivia = rand.Next(0, hints.Length - 1);
+
+            return hints[randomTrivia];
+        }
 
         private string[] askQuestion ()
         {
