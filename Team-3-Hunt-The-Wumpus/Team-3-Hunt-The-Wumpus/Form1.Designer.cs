@@ -209,17 +209,17 @@ namespace Team_3_Hunt_The_Wumpus
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxCommand;
-        private System.Windows.Forms.Panel panel1;
-        private RichTextBox richTextBoxOutput;
-        private RichTextBox richTextBoxWarn;
-        private Label label2;
-        private Label label3;
-        private RichTextBox richTextBoxTrivia;
-        private Label labelArrows;
-        private Label labelCoins;
-        private Button button1;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox textBoxCommand;
+        public System.Windows.Forms.Panel panel1;
+        public RichTextBox richTextBoxOutput;
+        public RichTextBox richTextBoxWarn;
+        public Label label2;
+        public Label label3;
+        public RichTextBox richTextBoxTrivia;
+        public Label labelArrows;
+        public Label labelCoins;
+        public Button button1;
     }
 }
 

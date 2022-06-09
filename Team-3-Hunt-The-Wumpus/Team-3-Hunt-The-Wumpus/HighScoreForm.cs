@@ -52,10 +52,10 @@ namespace Team_3_Hunt_The_Wumpus {
             label4.Font = new Font(pfc.Families[0], 16, FontStyle.Regular);
             label7.Font = new Font(pfc.Families[0], 15, FontStyle.Regular);
             label6.Font = new Font(pfc.Families[0], 14, FontStyle.Regular);
+            NameOfUser = Interaction.InputBox("Enter your name.", "Enter your name.", "");
         }
 
         private void HighScoreForm_Load(object sender, EventArgs e) {
-            NameOfUser = Interaction.InputBox("Enter your name.", "Enter your name.", "");
             var wumpusBonus = 0;
             if (KilledWumpus) wumpusBonus += 50;
             var score = 100 - NumberOfTurns + Coins + (5 * Arrows) + wumpusBonus;

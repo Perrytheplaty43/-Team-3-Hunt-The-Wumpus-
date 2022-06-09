@@ -48,7 +48,7 @@ namespace Team_3_Hunt_The_Wumpus {
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(12, 233);
+            this.label2.Location = new System.Drawing.Point(44, 233);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 50);
             this.label2.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace Team_3_Hunt_The_Wumpus {
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(12, 294);
+            this.label3.Location = new System.Drawing.Point(44, 294);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 50);
             this.label3.TabIndex = 2;
@@ -68,7 +68,7 @@ namespace Team_3_Hunt_The_Wumpus {
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(12, 355);
+            this.label4.Location = new System.Drawing.Point(44, 355);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 50);
             this.label4.TabIndex = 3;
@@ -78,7 +78,7 @@ namespace Team_3_Hunt_The_Wumpus {
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(12, 477);
+            this.label6.Location = new System.Drawing.Point(44, 477);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 50);
             this.label6.TabIndex = 5;
@@ -88,7 +88,7 @@ namespace Team_3_Hunt_The_Wumpus {
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(12, 416);
+            this.label7.Location = new System.Drawing.Point(44, 416);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(0, 50);
             this.label7.TabIndex = 4;
@@ -107,7 +107,7 @@ namespace Team_3_Hunt_The_Wumpus {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1306, 709);
+            this.ClientSize = new System.Drawing.Size(1370, 709);
             this.Controls.Add(this.labelScore);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
