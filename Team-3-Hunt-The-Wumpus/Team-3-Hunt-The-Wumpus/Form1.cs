@@ -126,6 +126,9 @@ namespace Team_3_Hunt_The_Wumpus {
 
         string[] questions;
         int triviaNumber = 0;
+
+        bool buyingArrows = false;
+        bool buyingHint = false;
         private void panel1_Paint(object sender, PaintEventArgs e) {
             var graphics = e.Graphics;
 
@@ -286,7 +289,7 @@ namespace Team_3_Hunt_The_Wumpus {
             int roomMove;
             int roomShoot;
             if (e.KeyCode == Keys.Enter) {
-                if (!trivia) {
+                if (!trivia || buyingArrows || buyingHint) {
                     if (textBoxCommand.Text.ToLower().StartsWith("move")) {
                         try {
                             roomMove = int.Parse(textBoxCommand.Text.Remove(0, 5));
@@ -336,6 +339,12 @@ namespace Team_3_Hunt_The_Wumpus {
                         textBoxCommand.Clear();
                         MyPlayer.IncreaseTurns();
                         refresh();
+                    } else if (textBoxCommand.Text.ToLower().StartsWith("buy arrows")) {
+                        askTriviaUI(triviaNumber, 3, 2);
+                        buyingArrows = true;
+                    } else if (textBoxCommand.Text.ToLower().StartsWith("buy hint")) {
+                        askTriviaUI(triviaNumber, 3, 2);
+                        buyingHint = true;
                     }
                 } else if (triviaPit) {
                     if (triviaNumber < 3) {
@@ -403,69 +412,113 @@ namespace Team_3_Hunt_The_Wumpus {
                             richTextBoxTrivia.Text = "You have succumb to the firewall. Game over.";
                         }
                     }
-                } else if (triviaNumber < 5) {
-                    switch (textBoxCommand.Text) {
-                        case "1":
-                            if (textBoxCommand.Text == questions[5]) {
-                                MyTrivia.recordAnswer(true);
-                                richTextBoxOutput.ForeColor = Color.LimeGreen;
-                                richTextBoxOutput.Text = "Correct!";
-                            } else {
-                                richTextBoxOutput.ForeColor = Color.Red;
-                                richTextBoxOutput.Text = "Wrong!";
-                            }
-                            triviaNumber++;
-                            askTriviaUI(triviaNumber, 5, 3);
-                            break;
-                        case "2":
-                            if (textBoxCommand.Text == questions[5]) {
-                                MyTrivia.recordAnswer(true);
-                                richTextBoxOutput.ForeColor = Color.LimeGreen;
-                                richTextBoxOutput.Text = "Correct!";
-                            } else {
-                                richTextBoxOutput.ForeColor = Color.Red;
-                                richTextBoxOutput.Text = "Wrong!";
-                            }
-                            triviaNumber++;
-                            askTriviaUI(triviaNumber, 5, 3);
-                            break;
-                        case "3":
-                            if (textBoxCommand.Text == questions[5]) {
-                                MyTrivia.recordAnswer(true);
-                                richTextBoxOutput.ForeColor = Color.LimeGreen;
-                                richTextBoxOutput.Text = "Correct!";
-                            } else {
-                                richTextBoxOutput.ForeColor = Color.Red;
-                                richTextBoxOutput.Text = "Wrong!";
-                            }
-                            triviaNumber++;
-                            askTriviaUI(triviaNumber, 5, 3);
-                            break;
-                        case "4":
-                            if (textBoxCommand.Text == questions[5]) {
-                                MyTrivia.recordAnswer(true);
-                                richTextBoxOutput.ForeColor = Color.LimeGreen;
-                                richTextBoxOutput.Text = "Correct!";
-                            } else {
-                                richTextBoxOutput.ForeColor = Color.Red;
-                                richTextBoxOutput.Text = "Wrong!";
-                            }
-                            triviaNumber++;
-                            askTriviaUI(triviaNumber, 5, 3);
-                            break;
+                }
+                if (buyingArrows) {
+                    if (triviaNumber < 3) {
+                        switch (textBoxCommand.Text) {
+                            case "1":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 3, 2);
+                                break;
+                            case "2":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 3, 2);
+                                break;
+                            case "3":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 3, 2);
+                                break;
+                            case "4":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 3, 2);
+                                break;
+                        }
                     }
-                } else {
-                    if (MyTrivia.NumberOfQuestionsRight >= 3) {
-                        richTextBoxTrivia.Text = "You were able to bypass the Wumpus. But as a result the Wumpus has moved.";
-                        MyGameLocation.RunAwayWumpusLocation(MyCave);
-                        trivia = false;
-                        triviaNumber = 0;
-                        MyTrivia.NumberOfQuestionsRight = 0;
-                        textBoxCommand.Clear();
-                        refresh();
-                    } else {
-                        richTextBoxTrivia.ForeColor = Color.Red;
-                        richTextBoxTrivia.Text = "You have succumb to the Wumpus. Game over.";
+                }
+                if (buyingHint) {
+                    if (triviaNumber < 3) {
+                        switch (textBoxCommand.Text) {
+                            case "1":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 3, 2);
+                                break;
+                            case "2":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 3, 2);
+                                break;
+                            case "3":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 3, 2);
+                                break;
+                            case "4":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 3, 2);
+                                break;
+                        }
                     }
                 }
             }
@@ -552,7 +605,7 @@ namespace Team_3_Hunt_The_Wumpus {
                             "Enter correct number";
                         break;
                 }
-            } else if (rounds == 3) {
+            } else if (rounds == 3 && triviaPit) {
                 if (MyTrivia.NumberOfQuestionsRight >= correct) {
                     richTextBoxTrivia.Text = "You were able to hack the firewall. But as a result you have been teleported back to the starting location.";
                     MyGameLocation.PlayerLocation = startingLocation;
@@ -567,6 +620,48 @@ namespace Team_3_Hunt_The_Wumpus {
                     richTextBoxTrivia.Text = "You have succumb to the firewall. Game over.";
                 }
                 return;
+            } else if (buyingArrows) {
+                if (MyTrivia.NumberOfQuestionsRight >= correct) {
+                    richTextBoxTrivia.Text = "You were able to buy more arrows.";
+                    trivia = false;
+                    buyingArrows = false;
+                    MyPlayer.IncreaseArrows();
+                    MyPlayer.IncreaseArrows();
+                    labelArrows.Text = $"Arrows: {MyPlayer.Arrows}";
+                    triviaNumber = 0;
+                    MyTrivia.NumberOfQuestionsRight = 0;
+                    textBoxCommand.Clear();
+                    refresh();
+                } else {
+                    richTextBoxTrivia.ForeColor = Color.Red;
+                    richTextBoxTrivia.Text = "You were unable to buy more arrows.";
+                    trivia = false;
+                    buyingArrows = false;
+                    labelArrows.Text = $"Arrows: {MyPlayer.Arrows}";
+                    triviaNumber = 0;
+                    MyTrivia.NumberOfQuestionsRight = 0;
+                    textBoxCommand.Clear();
+                    refresh();
+                }
+            } else if (buyingHint) {
+                if (MyTrivia.NumberOfQuestionsRight >= correct) {
+                    richTextBoxTrivia.Text = "You were able to buy a hint.";
+                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                    richTextBoxOutput.Text = $"Hint:\n{MyGameLocation.GetHint(MyCave, MyTrivia)}";
+                    trivia = false;
+                    buyingHint = false;
+                    triviaNumber = 0;
+                    MyTrivia.NumberOfQuestionsRight = 0;
+                    textBoxCommand.Clear();
+                    refresh();
+                } else {
+                    richTextBoxTrivia.ForeColor = Color.Red;
+                    richTextBoxTrivia.Text = "You were unable to buy a hint.";
+                    triviaNumber = 0;
+                    MyTrivia.NumberOfQuestionsRight = 0;
+                    textBoxCommand.Clear();
+                    refresh();
+                }
             } else {
                 if (MyTrivia.NumberOfQuestionsRight >= correct) {
                     richTextBoxTrivia.Text = "You were able to bypass the Wumpus. But as a result the Wumpus has moved.";
