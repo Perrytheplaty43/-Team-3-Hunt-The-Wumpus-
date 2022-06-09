@@ -51,6 +51,8 @@ namespace Team_3_Hunt_The_Wumpus {
             label3.Font = new Font(pfc.Families[0], 28, FontStyle.Regular);
             richTextBoxTrivia.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
             labelArrows.Font = new Font(pfc.Families[0], 25, FontStyle.Regular);
+            labelCoins.Font = new Font(pfc.Families[0], 25, FontStyle.Regular);
+            button1.Font = new Font(pfc.Families[0], 18, FontStyle.Regular);
         }
         int[] adjRooms;
         List<int> connectedRoom;
@@ -129,6 +131,8 @@ namespace Team_3_Hunt_The_Wumpus {
 
         bool buyingArrows = false;
         bool buyingHint = false;
+        bool triviaWumpus = false;
+        bool bats = false;
         private void panel1_Paint(object sender, PaintEventArgs e) {
             var graphics = e.Graphics;
 
@@ -304,7 +308,10 @@ namespace Team_3_Hunt_The_Wumpus {
                             textBoxCommand.Clear();
                             return;
                         }
+                        richTextBoxTrivia.Clear();
+                        richTextBoxTrivia.Text = MyTrivia.getRandomTrivia();
                         MyGameLocation.PlayerLocation = roomMove;
+                        MyPlayer.IncreaseCoins();
                         textBoxCommand.Clear();
                         MyPlayer.IncreaseTurns();
                         refresh();
@@ -325,7 +332,8 @@ namespace Team_3_Hunt_The_Wumpus {
                         MyPlayer.DecreaseArrows();
                         labelArrows.Text = $"Arrows: {MyPlayer.Arrows}";
                         if (MyGameLocation.WumpusLocation == roomShoot) {
-                            //won
+                            MyWumpus.IsDead = true;
+                            endGame("You Killed the Wumpus!");
                         } else {
                             MyWumpus.WakeWumpus(MyCave);
                             richTextBoxOutput.ForeColor = Color.Red;
@@ -333,7 +341,8 @@ namespace Team_3_Hunt_The_Wumpus {
                             textBoxCommand.Clear();
                             if (MyPlayer.Arrows == 0) {
                                 richTextBoxOutput.Text = "You have run out of arrows! The wumpus has take this opportunity to eat you!.";
-                                //lose
+                                
+                                endGame("You have run out of arrows! The wumpus has take this opportunity to eat you!");
                             }
                         }
                         textBoxCommand.Clear();
@@ -410,6 +419,8 @@ namespace Team_3_Hunt_The_Wumpus {
                         } else {
                             richTextBoxTrivia.ForeColor = Color.Red;
                             richTextBoxTrivia.Text = "You have succumb to the firewall. Game over.";
+                            
+                            endGame("You have succumb to the firewall. Game over.");
                         }
                     }
                 }
@@ -521,15 +532,64 @@ namespace Team_3_Hunt_The_Wumpus {
                         }
                     }
                 }
+                if (triviaWumpus) {
+                    if (triviaNumber < 5) {
+                        switch (textBoxCommand.Text) {
+                            case "1":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 5, 3);
+                                break;
+                            case "2":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 5, 3);
+                                break;
+                            case "3":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 5, 3);
+                                break;
+                            case "4":
+                                if (textBoxCommand.Text == questions[5]) {
+                                    MyTrivia.recordAnswer(true);
+                                    richTextBoxOutput.ForeColor = Color.LimeGreen;
+                                    richTextBoxOutput.Text = "Correct!";
+                                } else {
+                                    richTextBoxOutput.ForeColor = Color.Red;
+                                    richTextBoxOutput.Text = "Wrong!";
+                                }
+                                triviaNumber++;
+                                askTriviaUI(triviaNumber, 5, 3);
+                                break;
+                        }
+                    }
+                }
             }
         }
         private void refresh() {
-            if (MyGameLocation.Bat1Location == MyGameLocation.PlayerLocation || MyGameLocation.Bat2Location == MyGameLocation.PlayerLocation) {
-                richTextBoxOutput.Text = "You have been attacked by bats.\nYour location has been randomized.";
-                MyGameLocation.RandomizePlayerLocation();
-                MyGameLocation.RandomizeBatsLocation();
-                refresh();
-            }
+            labelCoins.Text = $"Coins: {MyPlayer.Coins}";
             canRoom1 = false;
             canRoom2 = false;
             canRoom3 = false;
@@ -569,7 +629,7 @@ namespace Team_3_Hunt_The_Wumpus {
             richTextBoxWarn.Text = MyGameLocation.GiveWarning(MyCave);
             panel1.Invalidate();
 
-
+            richTextBoxOutput.Text = "You have been attacked by bats.Your location has been randomized.";
             if (MyGameLocation.Pit1Location == MyGameLocation.PlayerLocation || MyGameLocation.Pit2Location == MyGameLocation.PlayerLocation) {
                 askTriviaUI(triviaNumber, 3, 2);
                 trivia = true;
@@ -578,13 +638,26 @@ namespace Team_3_Hunt_The_Wumpus {
             if (MyGameLocation.PlayerLocation == MyGameLocation.WumpusLocation) {
                 askTriviaUI(triviaNumber, 5, 3);
                 trivia = true;
+                triviaWumpus = true;
+            }
+            if (MyGameLocation.Bat1Location == MyGameLocation.PlayerLocation || MyGameLocation.Bat2Location == MyGameLocation.PlayerLocation) {
+                MyGameLocation.RandomizePlayerLocation();
+                MyGameLocation.RandomizeBatsLocation();
+                richTextBoxOutput.Text = "You have been attacked by bats.\nYour location has been randomized.";
+                bats = true;
+                refresh();
             }
         }
         private void askTriviaUI(int number, int rounds, int correct) {
             textBoxCommand.Clear();
+            if (MyPlayer.Coins < 0) {
+                richTextBoxOutput.ForeColor = Color.Red;
+                richTextBoxOutput.Text = "You dont have enough coins";
+                return;
+            }
             if (number < rounds) {
                 questions = MyTrivia.newTriviaQuestion(MyCave.SelectedCave);
-
+                MyPlayer.DecreaseCoins();
                 switch (rounds) {
                     case 3:
                         richTextBoxTrivia.Text = "You gave encountered a firewall. Awnser at least 2 questions correct in order to secsesfully bypass the firewall.\n" +
@@ -618,6 +691,8 @@ namespace Team_3_Hunt_The_Wumpus {
                 } else {
                     richTextBoxTrivia.ForeColor = Color.Red;
                     richTextBoxTrivia.Text = "You have succumb to the firewall. Game over.";
+                    
+                    endGame("You have succumb to the firewall. Game over.");
                 }
                 return;
             } else if (buyingArrows) {
@@ -679,8 +754,26 @@ namespace Team_3_Hunt_The_Wumpus {
                 } else {
                     richTextBoxTrivia.ForeColor = Color.Red;
                     richTextBoxTrivia.Text = "You have succumb to the Wumpus. Game over.";
+                    
+                    endGame("You have succumb to the Wumpus. Game over.");
                 }
             }
+        }
+        private void endGame(string message) {
+            var highScoresForm = new HighScoreForm();
+            //TODO: add turns everywhere
+            highScoresForm.NumberOfTurns = MyPlayer.Turns;
+            highScoresForm.Coins = MyPlayer.Coins;
+            highScoresForm.Arrows = MyPlayer.Arrows;
+            highScoresForm.KilledWumpus = MyWumpus.IsDead;
+            highScoresForm.CaveNum = MyCave.SelectedCave;
+            highScoresForm.Message = message;
+            highScoresForm.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            var help = new Help();
+            help.ShowDialog();
         }
     }
 }

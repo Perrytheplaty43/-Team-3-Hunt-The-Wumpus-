@@ -52,6 +52,16 @@ namespace Team_3_Hunt_The_Wumpus
             return new string[] { questionList[awnserIndex][0], questionList[awnserIndex][1] };
         }
 
+        public string getRandomTrivia() {
+            string text = File.ReadAllText(".\\TriviaHints.txt");
+            var hints = text.Split(',').ToArray();
+
+            Random rand = new Random();
+            int randomTrivia = rand.Next(0, hints.Length - 1);
+
+            return hints[randomTrivia];
+        }
+
         private string[] askQuestion ()
         {
             //random number generator (1-4)

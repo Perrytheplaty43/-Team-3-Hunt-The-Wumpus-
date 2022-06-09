@@ -41,6 +41,8 @@ namespace Team_3_Hunt_The_Wumpus
             this.label3 = new System.Windows.Forms.Label();
             this.richTextBoxTrivia = new System.Windows.Forms.RichTextBox();
             this.labelArrows = new System.Windows.Forms.Label();
+            this.labelCoins = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -87,6 +89,7 @@ namespace Team_3_Hunt_The_Wumpus
             this.richTextBoxOutput.BackColor = System.Drawing.Color.Black;
             this.richTextBoxOutput.Location = new System.Drawing.Point(181, 576);
             this.richTextBoxOutput.Name = "richTextBoxOutput";
+            this.richTextBoxOutput.ReadOnly = true;
             this.richTextBoxOutput.Size = new System.Drawing.Size(960, 96);
             this.richTextBoxOutput.TabIndex = 2;
             this.richTextBoxOutput.Text = "";
@@ -154,11 +157,39 @@ namespace Team_3_Hunt_The_Wumpus
             this.labelArrows.TabIndex = 7;
             this.labelArrows.Text = "Arrows: 3";
             // 
+            // labelCoins
+            // 
+            this.labelCoins.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelCoins.AutoSize = true;
+            this.labelCoins.BackColor = System.Drawing.Color.Transparent;
+            this.labelCoins.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelCoins.ForeColor = System.Drawing.Color.Lime;
+            this.labelCoins.Location = new System.Drawing.Point(-49, 46);
+            this.labelCoins.Name = "labelCoins";
+            this.labelCoins.Size = new System.Drawing.Size(151, 50);
+            this.labelCoins.TabIndex = 8;
+            this.labelCoins.Text = "Coins: 0";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Black;
+            this.button1.ForeColor = System.Drawing.Color.LimeGreen;
+            this.button1.Location = new System.Drawing.Point(1277, 701);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(95, 48);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Help";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 728);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.labelCoins);
             this.Controls.Add(this.labelArrows);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.richTextBoxTrivia);
@@ -187,6 +218,8 @@ namespace Team_3_Hunt_The_Wumpus
         private Label label3;
         private RichTextBox richTextBoxTrivia;
         private Label labelArrows;
+        private Label labelCoins;
+        private Button button1;
     }
 }
 

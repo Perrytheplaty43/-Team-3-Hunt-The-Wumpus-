@@ -11,7 +11,7 @@ namespace Team_3_Hunt_The_Wumpus
         // instance variables
         public int MyProperty { get; set; }
         GameLocation gameLocation;
-        public bool DeadOrAlive { get; set; }
+        public bool IsDead { get; set; }
 
         // constructer
         public Wumpus()
