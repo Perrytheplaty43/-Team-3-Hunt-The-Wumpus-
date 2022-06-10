@@ -24,6 +24,7 @@ namespace Team_3_Hunt_The_Wumpus {
 
         public string Message { get; set; }
         public string NameOfUser { get; set; }
+        public int isFirst = 0;
         public HighScoreForm() {
             InitializeComponent();
             [DllImport("gdi32.dll")]
@@ -53,14 +54,9 @@ namespace Team_3_Hunt_The_Wumpus {
             label7.Font = new Font(pfc.Families[0], 15, FontStyle.Regular);
             label6.Font = new Font(pfc.Families[0], 14, FontStyle.Regular);
             NameOfUser = Interaction.InputBox("Enter your name.", "Enter your name.", "");
-        }
 
+        }
         private void HighScoreForm_Load(object sender, EventArgs e) {
-            var wumpusBonus = 0;
-            if (KilledWumpus) wumpusBonus += 50;
-            var score = 100 - NumberOfTurns + Coins + (5 * Arrows) + wumpusBonus;
-            MyHighScoreManager.AddNewHighScore(Name, CaveNum, score, NumberOfTurns, Arrows, KilledWumpus, Coins);
-            MyHighScoreManager.SaveScores();
 
             label1.Text = Message;
 
@@ -70,6 +66,15 @@ namespace Team_3_Hunt_The_Wumpus {
             for (int i = 0; i < highScores.Count; i++) {
                 if (highScores[i].DefeatedWumpus) wasWumpusKilled.Add("Yes");
                 else wasWumpusKilled.Add("No");
+            }
+            var score = 0;
+            var wumpusBonus = 0;
+            if (isFirst == 0) {
+                wumpusBonus = 0;
+                if (KilledWumpus) wumpusBonus += 50;
+                score = 100 - NumberOfTurns + Coins + (5 * Arrows) + wumpusBonus;
+                MyHighScoreManager.AddNewHighScore(NameOfUser, CaveNum, score, NumberOfTurns, Arrows, KilledWumpus, Coins);
+                _ = MyHighScoreManager.SaveScores();
             }
 
             labelScore.Text = $"Your Score: {score}";
