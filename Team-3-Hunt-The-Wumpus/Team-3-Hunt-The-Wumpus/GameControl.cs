@@ -323,12 +323,12 @@ namespace Team_3_Hunt_The_Wumpus {
                         } else {
                             MyWumpus.WakeWumpus(MyCave);
                             form1.richTextBoxOutput.ForeColor = Color.Red;
-                            form1.richTextBoxOutput.Text = "You missed! The Wumpus has awakend!";
+                            form1.richTextBoxOutput.Text = "You missed! The Wumpus has awakened!";
                             form1.textBoxCommand.Clear();
                             if (MyPlayer.Arrows == 0) {
-                                form1.richTextBoxOutput.Text = "You have run out of arrows! The wumpus has take this opportunity to eat you!.";
+                                form1.richTextBoxOutput.Text = "You have run out of arrows! The wumpus has taken this opportunity to eat you!.";
 
-                                endGame("You have run out of arrows! The wumpus has take this opportunity to eat you!");
+                                endGame("You have run out of arrows! The wumpus has taken this opportunity to eat you!");
                             }
                         }
                         form1.textBoxCommand.Clear();
@@ -645,7 +645,7 @@ namespace Team_3_Hunt_The_Wumpus {
                 MyPlayer.DecreaseCoins();
                 switch (rounds) {
                     case 3:
-                        form1.richTextBoxTrivia.Text = "You gave encountered a firewall. Awnser at least 2 questions correct in order to secsesfully bypass the firewall.\n" +
+                        form1.richTextBoxTrivia.Text = "You have encountered a firewall. Answer at least 2 questions correct in order to secsesfully bypass the firewall.\n" +
                             questions[0] + ":\n" +
                             "1: " + questions[1] + "\n" +
                             "2: " + questions[2] + "\n" +
@@ -654,7 +654,7 @@ namespace Team_3_Hunt_The_Wumpus {
                             "Enter correct number";
                         break;
                     case 5:
-                        form1.richTextBoxTrivia.Text = "You gave encountered a Wumpus. Awnser at least 3 questions correct in order to secsesfully bypass the Wumpus.\n" +
+                        form1.richTextBoxTrivia.Text = "You have encountered a Wumpus. Answer at least 3 questions correct in order to secsesfully bypass the Wumpus.\n" +
                             questions[0] + ":\n" +
                             "1: " + questions[1] + "\n" +
                             "2: " + questions[2] + "\n" +
